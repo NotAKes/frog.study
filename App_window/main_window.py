@@ -1,5 +1,5 @@
 import sys
-
+import sqlite3
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from ui.main_pageUI import Ui_MainWindow
 from PyQt6 import QtCore, QtWidgets
@@ -10,10 +10,18 @@ from math_window import MathWindow
 class Mainwindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
-        # остальное без изменений
+        # Получение успеваемости на каждом уроке
+        self.progress_update()
         self.setupUi(self)
         self.math_button.clicked.connect(self.open_math)
+
+
+
+    def progress_update(self):
+        con = sqlite3.connect('student_progress.sqlite')
+        # Выполнение запроса и получение всех результатов
+        self.student_progress = con.cursor().execute(""" """).fetchall()
+        con.close()
 
     def open_math(self):
         self.second_form = MathWindow(self)
