@@ -24,7 +24,7 @@ class Paragraph_show(QtWidgets.QWidget):
         box.addWidget(self.scrollArea)
 
     def get_paragraph(self):
-        con = sqlite3.connect('paragraphs.sqlite')
+        con = sqlite3.connect('db_name.sqlite')
         self.paragraphs = con.cursor().execute(""" """).fetchone()
         con.close()
         self.paragraphs = [f'wefiuhwefiojnwefijnwfijnwfijnw{QRectF(0, 0, 20, 20)}т\n\n\nijnwifojnwefijnweif']

@@ -1,11 +1,12 @@
-import sqlite3
+
+from ui.account_page import Ui_Account_Form
+from PyQt6.QtWidgets import QApplication, QMainWindow
 import sys
-from PyQt6.QtWidgets import QWidget
 from PyQt6 import QtCore, QtWidgets
-from ui.math_pageUI import Ui_Form_Math
+import sqlite3
 
 
-class MathWindow(QWidget, Ui_Form_Math):
+class AccountWindow(QMainWindow, Ui_Account_Form):
     def __init__(self, *args):
         super().__init__()
         # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
@@ -14,18 +15,13 @@ class MathWindow(QWidget, Ui_Form_Math):
 
         # self.pushButton.clicked.connect(self.run)
 
-    def get_paragraphs(self):
-        con = sqlite3.connect('db_name.sqlite')
-        # Выполнение запроса и получение всех результатов
-        self.paragraphs = con.cursor().execute(""" """).fetchall()
-        con.close()
-
 
     def run(self):
         pass
 
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    window = MathWindow()
+    window = AccountWindow()
     window.show()
     sys.exit(app.exec())

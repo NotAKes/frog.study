@@ -163,10 +163,10 @@ text-align:center;</string>
       <widget class="QLineEdit" name="lineEdit">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>360</y>
-         <width>211</width>
-         <height>51</height>
+         <x>150</x>
+         <y>400</y>
+         <width>221</width>
+         <height>31</height>
         </rect>
        </property>
       </widget>

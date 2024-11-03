@@ -18,7 +18,7 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 
 
     def progress_update(self):
-        con = sqlite3.connect('student_progress.sqlite')
+        con = sqlite3.connect('db_name.sqlite')
         # Выполнение запроса и получение всех результатов
         self.student_progress = con.cursor().execute(""" """).fetchall()
         con.close()
