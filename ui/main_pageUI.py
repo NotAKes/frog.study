@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'main_page.ui'
+# Form implementation generated from reading ui file 'ui/main_page.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1
 #
@@ -12,12 +12,13 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1237, 859)
+        MainWindow.resize(1235, 818)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
         MainWindow.setStyleSheet("background-color:rgb(54, 57, 76);")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setStyleSheet("QFrame, QPushButton{\n"
-"border:none;}")
+"border:none;}\n"
+"QPushButton:hover{text-decoration:underline}")
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -31,11 +32,11 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.pushButton_7 = QtWidgets.QPushButton(parent=self.frame)
         self.pushButton_7.setStyleSheet("background:transparent;\n"
-"text-decoration:underline;\n"
 "color:white;\n"
 "font-size:32px;\n"
 "padding-left:4%;\n"
-"text-align:left;")
+"text-align:left;\n"
+"")
         self.pushButton_7.setObjectName("pushButton_7")
         self.verticalLayout.addWidget(self.pushButton_7)
         self.pushButton_5 = QtWidgets.QPushButton(parent=self.frame)
@@ -65,7 +66,7 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_2.setObjectName("frame_2")
         self.math_button = QtWidgets.QPushButton(parent=self.frame_2)
-        self.math_button.setGeometry(QtCore.QRect(50, 140, 451, 61))
+        self.math_button.setGeometry(QtCore.QRect(50, 150, 451, 61))
         self.math_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:30px;\n"
@@ -76,33 +77,18 @@ class Ui_MainWindow(object):
 "background-color :rgb(128, 149, 184);}")
         self.math_button.setObjectName("math_button")
         self.math_progression = QtWidgets.QProgressBar(parent=self.frame_2)
-        self.math_progression.setGeometry(QtCore.QRect(370, 160, 118, 23))
+        self.math_progression.setGeometry(QtCore.QRect(370, 170, 118, 23))
         self.math_progression.setStyleSheet("color:white;")
         self.math_progression.setProperty("value", 10)
         self.math_progression.setObjectName("math_progression")
         self.label = QtWidgets.QLabel(parent=self.frame_2)
         self.label.setGeometry(QtCore.QRect(70, 50, 411, 42))
-        self.label.setStyleSheet("font-size:30px;\n"
+        self.label.setStyleSheet("font-size:35px;\n"
 "color:white;")
         self.label.setObjectName("label")
-        self.math_button.raise_()
-        self.label.raise_()
-        self.math_progression.raise_()
-        self.horizontalLayout.addWidget(self.frame_2)
-        self.frame_3 = QtWidgets.QFrame(parent=self.centralwidget)
-        self.frame_3.setMinimumSize(QtCore.QSize(500, 800))
-        self.frame_3.setMaximumSize(QtCore.QSize(800, 1500))
-        self.frame_3.setStyleSheet("background:transparent;")
-        self.frame_3.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_3.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_3.setObjectName("frame_3")
-        self.progressBar_4 = QtWidgets.QProgressBar(parent=self.frame_3)
-        self.progressBar_4.setGeometry(QtCore.QRect(340, 380, 118, 23))
-        self.progressBar_4.setProperty("value", 0)
-        self.progressBar_4.setObjectName("progressBar_4")
-        self.pushButton_2 = QtWidgets.QPushButton(parent=self.frame_3)
-        self.pushButton_2.setGeometry(QtCore.QRect(10, 140, 451, 61))
-        self.pushButton_2.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
+        self.chem_button = QtWidgets.QPushButton(parent=self.frame_2)
+        self.chem_button.setGeometry(QtCore.QRect(50, 280, 451, 61))
+        self.chem_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:30px;\n"
 "padding-left:20%;\n"
@@ -110,18 +96,10 @@ class Ui_MainWindow(object):
 "border-radius: 10px;}\n"
 "QPushButton:hover{\n"
 "background-color :rgb(128, 149, 184);}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.progressBar_2 = QtWidgets.QProgressBar(parent=self.frame_3)
-        self.progressBar_2.setGeometry(QtCore.QRect(340, 160, 118, 23))
-        self.progressBar_2.setProperty("value", 0)
-        self.progressBar_2.setObjectName("progressBar_2")
-        self.progressBar_3 = QtWidgets.QProgressBar(parent=self.frame_3)
-        self.progressBar_3.setGeometry(QtCore.QRect(340, 270, 118, 23))
-        self.progressBar_3.setProperty("value", 0)
-        self.progressBar_3.setObjectName("progressBar_3")
-        self.pushButton_3 = QtWidgets.QPushButton(parent=self.frame_3)
-        self.pushButton_3.setGeometry(QtCore.QRect(10, 250, 451, 61))
-        self.pushButton_3.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
+        self.chem_button.setObjectName("chem_button")
+        self.phys_button = QtWidgets.QPushButton(parent=self.frame_2)
+        self.phys_button.setGeometry(QtCore.QRect(50, 410, 451, 61))
+        self.phys_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:30px;\n"
 "padding-left:20%;\n"
@@ -129,10 +107,10 @@ class Ui_MainWindow(object):
 "border-radius: 10px;}\n"
 "QPushButton:hover{\n"
 "background-color :rgb(128, 149, 184);}")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(parent=self.frame_3)
-        self.pushButton_4.setGeometry(QtCore.QRect(10, 360, 451, 61))
-        self.pushButton_4.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
+        self.phys_button.setObjectName("phys_button")
+        self.bio_button = QtWidgets.QPushButton(parent=self.frame_2)
+        self.bio_button.setGeometry(QtCore.QRect(50, 540, 451, 61))
+        self.bio_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:30px;\n"
 "padding-left:20%;\n"
@@ -141,28 +119,100 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:hover{\n"
 "background-color :rgb(128, 149, 184);}")
-        self.pushButton_4.setObjectName("pushButton_4")
+        self.bio_button.setObjectName("bio_button")
+        self.chem_progression = QtWidgets.QProgressBar(parent=self.frame_2)
+        self.chem_progression.setGeometry(QtCore.QRect(370, 300, 118, 23))
+        self.chem_progression.setStyleSheet("color:white;")
+        self.chem_progression.setProperty("value", 10)
+        self.chem_progression.setObjectName("chem_progression")
+        self.phys_progression = QtWidgets.QProgressBar(parent=self.frame_2)
+        self.phys_progression.setGeometry(QtCore.QRect(370, 430, 118, 23))
+        self.phys_progression.setStyleSheet("color:white;")
+        self.phys_progression.setProperty("value", 10)
+        self.phys_progression.setObjectName("phys_progression")
+        self.bio_progression = QtWidgets.QProgressBar(parent=self.frame_2)
+        self.bio_progression.setGeometry(QtCore.QRect(370, 560, 118, 23))
+        self.bio_progression.setStyleSheet("color:white;")
+        self.bio_progression.setProperty("value", 10)
+        self.bio_progression.setObjectName("bio_progression")
+        self.label.raise_()
+        self.chem_button.raise_()
+        self.math_button.raise_()
+        self.math_progression.raise_()
+        self.phys_button.raise_()
+        self.bio_button.raise_()
+        self.chem_progression.raise_()
+        self.phys_progression.raise_()
+        self.bio_progression.raise_()
+        self.horizontalLayout.addWidget(self.frame_2)
+        self.frame_3 = QtWidgets.QFrame(parent=self.centralwidget)
+        self.frame_3.setMinimumSize(QtCore.QSize(500, 800))
+        self.frame_3.setMaximumSize(QtCore.QSize(800, 1500))
+        self.frame_3.setStyleSheet("background:transparent;")
+        self.frame_3.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_3.setObjectName("frame_3")
         self.label_2 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_2.setGeometry(QtCore.QRect(40, 50, 411, 42))
-        self.label_2.setStyleSheet("font-size:30px;\n"
+        self.label_2.setGeometry(QtCore.QRect(70, 50, 411, 42))
+        self.label_2.setStyleSheet("font-size:35px;\n"
 "color:white;")
         self.label_2.setObjectName("label_2")
-        self.pushButton_4.raise_()
-        self.progressBar_4.raise_()
-        self.pushButton_2.raise_()
-        self.progressBar_2.raise_()
-        self.pushButton_3.raise_()
-        self.progressBar_3.raise_()
-        self.label_2.raise_()
+        self.confirm_send = QtWidgets.QPushButton(parent=self.frame_3)
+        self.confirm_send.setGeometry(QtCore.QRect(280, 720, 191, 51))
+        self.confirm_send.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
+"color:white;\n"
+"font-size:25px;\n"
+"padding-left:20%;\n"
+"text-align:left;\n"
+"border-radius: 10px;}\n"
+"QPushButton:hover{\n"
+"background-color :rgb(128, 149, 184);}")
+        self.confirm_send.setObjectName("confirm_send")
+        self.send_button = QtWidgets.QPushButton(parent=self.frame_3)
+        self.send_button.setGeometry(QtCore.QRect(60, 150, 411, 41))
+        self.send_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
+"color:white;\n"
+"font-size:25px;\n"
+"padding-left:20%;\n"
+"text-align:center;\n"
+"border-radius: 10px;}\n"
+"QPushButton:hover{\n"
+"background-color :rgb(128, 149, 184);}")
+        self.send_button.setObjectName("send_button")
+        self.label_3 = QtWidgets.QLabel(parent=self.frame_3)
+        self.label_3.setGeometry(QtCore.QRect(210, 210, 101, 31))
+        self.label_3.setStyleSheet("QLabel{\n"
+"color:white;\n"
+"font-size:25px;\n"
+"padding-left:20%;\n"
+"text-align:center;\n"
+"border-radius: 10px;}")
+        self.label_3.setObjectName("label_3")
+        self.senders_text = QtWidgets.QTextEdit(parent=self.frame_3)
+        self.senders_text.setGeometry(QtCore.QRect(60, 260, 411, 341))
+        self.senders_text.setStyleSheet("color:white;\n"
+"font-size:25px;\n"
+"background:rgb(117, 126, 168);\n"
+"border: 2px solid rgb(52, 56, 75);")
+        self.senders_text.setObjectName("senders_text")
+        self.comboBox = QtWidgets.QComboBox(parent=self.frame_3)
+        self.comboBox.setGeometry(QtCore.QRect(280, 630, 191, 51))
+        self.comboBox.setStyleSheet("background-color: rgb(110, 127, 158);\n"
+"color:white;\n"
+"font-size:20px;\n"
+"border-radius: 10px")
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.label_4 = QtWidgets.QLabel(parent=self.frame_3)
+        self.label_4.setGeometry(QtCore.QRect(70, 630, 211, 51))
+        self.label_4.setStyleSheet("font-size:22px;\n"
+"color:white;")
+        self.label_4.setObjectName("label_4")
         self.horizontalLayout.addWidget(self.frame_3)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1237, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -171,12 +221,25 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton_7.setText(_translate("MainWindow", "Главная"))
-        self.pushButton_5.setText(_translate("MainWindow", "Перейти в \n"
+        self.pushButton_5.setText(_translate("MainWindow", "Перейти в\n"
 "свой аккаунт"))
         self.pushButton_6.setText(_translate("MainWindow", "Настройки"))
         self.math_button.setText(_translate("MainWindow", "Математика"))
-        self.label.setText(_translate("MainWindow", "Продолжить обучение по..."))
-        self.pushButton_2.setText(_translate("MainWindow", "Химия"))
-        self.pushButton_3.setText(_translate("MainWindow", "Физика"))
-        self.pushButton_4.setText(_translate("MainWindow", "Биология"))
-        self.label_2.setText(_translate("MainWindow", "Изучить новую область"))
+        self.label.setText(_translate("MainWindow", "Вперёд к знаниям!"))
+        self.chem_button.setText(_translate("MainWindow", "Химия"))
+        self.phys_button.setText(_translate("MainWindow", "Физика"))
+        self.bio_button.setText(_translate("MainWindow", "Биология"))
+        self.label_2.setText(_translate("MainWindow", "Отправить статью"))
+        self.confirm_send.setText(_translate("MainWindow", "Отправить!"))
+        self.send_button.setText(_translate("MainWindow", "Загрузить файл"))
+        self.label_3.setText(_translate("MainWindow", "ИЛИ"))
+        self.senders_text.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:25px; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.comboBox.setItemText(0, _translate("MainWindow", "Математика"))
+        self.comboBox.setItemText(1, _translate("MainWindow", "Физика"))
+        self.comboBox.setItemText(2, _translate("MainWindow", "Биология"))
+        self.comboBox.setItemText(3, _translate("MainWindow", "Химия"))
+        self.label_4.setText(_translate("MainWindow", "Выберите область:"))

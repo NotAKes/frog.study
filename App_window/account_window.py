@@ -1,5 +1,5 @@
 
-from ui.account_page import Ui_Account_Form
+from ui.account_pageUI import Ui_Account_Form
 from PyQt6.QtWidgets import QApplication, QMainWindow
 import sys
 from PyQt6 import QtCore, QtWidgets
