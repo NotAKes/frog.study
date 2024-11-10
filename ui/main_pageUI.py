@@ -30,33 +30,33 @@ class Ui_MainWindow(object):
         self.frame.setObjectName("frame")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.pushButton_7 = QtWidgets.QPushButton(parent=self.frame)
-        self.pushButton_7.setStyleSheet("background:transparent;\n"
+        self.ToMain = QtWidgets.QPushButton(parent=self.frame)
+        self.ToMain.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:32px;\n"
 "padding-left:4%;\n"
 "text-align:left;\n"
 "")
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.verticalLayout.addWidget(self.pushButton_7)
-        self.pushButton_5 = QtWidgets.QPushButton(parent=self.frame)
-        self.pushButton_5.setStyleSheet("background:transparent;\n"
+        self.ToMain.setObjectName("ToMain")
+        self.verticalLayout.addWidget(self.ToMain)
+        self.ToAccount = QtWidgets.QPushButton(parent=self.frame)
+        self.ToAccount.setStyleSheet("background:transparent;\n"
 "word-break:break-word;\n"
 "color:white;\n"
 "font-size:30px;\n"
 "padding-left:4%;\n"
 "text-align:left;")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.verticalLayout.addWidget(self.pushButton_5)
-        self.pushButton_6 = QtWidgets.QPushButton(parent=self.frame)
-        self.pushButton_6.setStyleSheet("background:transparent;\n"
+        self.ToAccount.setObjectName("ToAccount")
+        self.verticalLayout.addWidget(self.ToAccount)
+        self.ToSettings = QtWidgets.QPushButton(parent=self.frame)
+        self.ToSettings.setStyleSheet("background:transparent;\n"
 "word-break:break-word;\n"
 "color:white;\n"
 "font-size:30px;\n"
 "padding-left:4%;\n"
 "text-align:left;")
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.verticalLayout.addWidget(self.pushButton_6)
+        self.ToSettings.setObjectName("ToSettings")
+        self.verticalLayout.addWidget(self.ToSettings)
         self.horizontalLayout.addWidget(self.frame)
         self.frame_2 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_2.setMinimumSize(QtCore.QSize(500, 800))
@@ -220,10 +220,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton_7.setText(_translate("MainWindow", "Главная"))
-        self.pushButton_5.setText(_translate("MainWindow", "Перейти в\n"
+        self.ToMain.setText(_translate("MainWindow", "Главная"))
+        self.ToAccount.setText(_translate("MainWindow", "Перейти в\n"
 "свой аккаунт"))
-        self.pushButton_6.setText(_translate("MainWindow", "Настройки"))
+        self.ToSettings.setText(_translate("MainWindow", "Настройки"))
         self.math_button.setText(_translate("MainWindow", "Математика"))
         self.label.setText(_translate("MainWindow", "Вперёд к знаниям!"))
         self.chem_button.setText(_translate("MainWindow", "Химия"))

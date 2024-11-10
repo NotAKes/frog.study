@@ -48,7 +48,7 @@ QPushButton:hover{text-decoration:underline}</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton_7">
+        <widget class="QPushButton" name="ToMain">
          <property name="styleSheet">
           <string notr="true">background:transparent;
 color:white;
@@ -63,7 +63,7 @@ text-align:left;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_5">
+        <widget class="QPushButton" name="ToAccount">
          <property name="styleSheet">
           <string notr="true">background:transparent;
 word-break:break-word;
@@ -79,7 +79,7 @@ text-align:left;</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_6">
+        <widget class="QPushButton" name="ToSettings">
          <property name="styleSheet">
           <string notr="true">background:transparent;
 word-break:break-word;
