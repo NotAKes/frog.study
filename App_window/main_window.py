@@ -1,13 +1,14 @@
 import sys
 import sqlite3
-
 from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton
-
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel
 from ui.settings_pageUI import Ui_Form_Settings
 from ui.main_pageUI import Ui_MainWindow
 from PyQt6 import QtCore, QtWidgets
+# from paragraph_page import Paragraph_show
 from study_windows import MathWindow, PhysWindow, BioWindow, ChemWindow
+
+text_size = 1555
 
 
 class Mainwindow(QMainWindow, Ui_MainWindow):
@@ -23,7 +24,8 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
         self.setWindowIcon(QIcon('logo.png'))
         self.progress_update()
         self.ToSettings.clicked.connect(self.open_service_window)
-        self.send_button.clicked.connect(self.send_article)
+        self.send_button.clicked.connect(self.load_article)
+        self.confirm_send.clicked.connect(self.send_article)
         self.math_button.clicked.connect(self.open_study_window)
         self.senders_text.setPlaceholderText('Написать здесь...')
 
@@ -63,7 +65,7 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
         self.close()
 
     # Отправка кастомных статей по разным предметам
-    def send_article(self):
+    def load_article(self):
         fname = QFileDialog.getOpenFileName(
             self, 'Выбрать файл', '',
             'Текстовый (*.txt)')[0]
@@ -73,6 +75,8 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
             text = file.readlines()
             for i in text:
                 self.senders_text.setText(self.senders_text.toPlainText() + i)
+
+    def send_article(self):
         con = sqlite3.connect('db_name.sqlite')
         # Запись кастомной статьи в Бд
         con.cursor().execute(""" """).fetchall()
@@ -83,11 +87,21 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 class SettingsWindow(QMainWindow, Ui_Form_Settings):
     def __init__(self, *args):
         super().__init__()
+
         self.setupUi(self)
         self.setWindowTitle('One-frog.Study')
         self.setWindowIcon(QIcon('logo.png'))
         self.textBrowser.setOpenExternalLinks(True)
+        self.text_size.setValue(17)
+        self.text_size.valueChanged.connect(self.fontsize_update)
+        self.text_size.setMinimum(12)
+        self.text_size.setMaximum(32)
         self.ToMain.clicked.connect(self.tomain)
+
+    def fontsize_update(self):
+        global text_size
+        text_size = self.text_size.value()
+        print(self.text_size.value())
 
     def tomain(self):  # функция для возращения на домашнюю страницу
         self.mainwindow = Mainwindow()
@@ -100,6 +114,11 @@ class SettingsWindow(QMainWindow, Ui_Form_Settings):
 #         super().__init__()
 #         # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
 #         pass
+#         fname = QFileDialog.getOpenFileName(self, 'Выбрать картинку', '')[0]
+
+
+def get_fontsize():
+    return text_size
 
 
 if __name__ == '__main__':  # запуск мейн окна
