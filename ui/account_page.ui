@@ -70,7 +70,8 @@ word-break:break-word;
 color:white;
 font-size:30px;
 padding-left:4%;
-text-align:left;</string>
+text-align:left;
+text-decoration:underline;</string>
          </property>
          <property name="text">
           <string>Мой аккаунт</string>
@@ -143,7 +144,7 @@ text-align:left;
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>650</y>
+         <y>380</y>
          <width>231</width>
          <height>61</height>
         </rect>
@@ -165,7 +166,7 @@ text-align:center;</string>
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>410</y>
+         <y>190</y>
          <width>311</width>
          <height>31</height>
         </rect>
@@ -175,7 +176,7 @@ text-align:center;</string>
        <property name="geometry">
         <rect>
          <x>80</x>
-         <y>350</y>
+         <y>130</y>
          <width>161</width>
          <height>41</height>
         </rect>
@@ -192,32 +193,11 @@ text-align:left;
         <string>Никнейм</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_9">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>80</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background:transparent;
-color:white;
-font-size:30px;
-padding-left:4%;
-text-align:left;
-</string>
-       </property>
-       <property name="text">
-        <string>Аватар</string>
-       </property>
-      </widget>
       <widget class="QComboBox" name="favoriteClass">
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>540</y>
+         <y>290</y>
          <width>311</width>
          <height>41</height>
         </rect>
@@ -258,7 +238,7 @@ border-radius: 10px</string>
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>490</y>
+         <y>240</y>
          <width>271</width>
          <height>41</height>
         </rect>
@@ -273,28 +253,6 @@ text-align:left;
        </property>
        <property name="text">
         <string>Любимый предмет</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>90</y>
-         <width>201</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color:rgb(110, 127, 158);
-word-break:break-word;
-color:white;
-border-radius:4px;
-font-size:20px;
-padding-left:4%;
-text-align:center;</string>
-       </property>
-       <property name="text">
-        <string>Загрузить Аватар</string>
        </property>
       </widget>
      </widget>
@@ -532,17 +490,6 @@ text-align:left;
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1237</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

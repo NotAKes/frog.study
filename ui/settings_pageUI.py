@@ -54,7 +54,8 @@ class Ui_Form_Settings(object):
 "color:white;\n"
 "font-size:30px;\n"
 "padding-left:4%;\n"
-"text-align:left;")
+"text-align:left;\n"
+"text-decoration:underline;")
         self.ToSettings.setObjectName("ToSettings")
         self.verticalLayout.addWidget(self.ToSettings)
         self.horizontalLayout.addWidget(self.frame)
@@ -99,8 +100,7 @@ class Ui_Form_Settings(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.ToMain.setText(_translate("MainWindow", "Главная"))
-        self.ToAccount.setText(_translate("MainWindow", "Перейти в\n"
-"свой аккаунт"))
+        self.ToAccount.setText(_translate("MainWindow", "Мой аккаунт"))
         self.ToSettings.setText(_translate("MainWindow", "Настройки"))
         self.label.setText(_translate("MainWindow", "Изменить размер шрифта \n"
 "в параграфе"))

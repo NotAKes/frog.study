@@ -4,6 +4,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel
 from ui.settings_pageUI import Ui_Form_Settings
 from ui.main_pageUI import Ui_MainWindow
+from ui.account_pageUI import Ui_AccountWindow
 from PyQt6 import QtCore, QtWidgets
 # from paragraph_page import Paragraph_show
 from study_windows import MathWindow, PhysWindow, BioWindow, ChemWindow
@@ -24,6 +25,7 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
         self.setWindowIcon(QIcon('logo.png'))
         self.progress_update()
         self.ToSettings.clicked.connect(self.open_service_window)
+        self.ToAccount.clicked.connect(self.open_service_window)
         self.send_button.clicked.connect(self.load_article)
         self.confirm_send.clicked.connect(self.send_article)
         self.math_button.clicked.connect(self.open_study_window)
@@ -48,20 +50,20 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
     def open_study_window(self):
         if self.sender().text() == 'Математика':
             self.second_form = MathWindow(self)
-        if self.sender().text() == 'Физика':
+        elif self.sender().text() == 'Физика':
             self.second_form = PhysWindow(self)
-        if self.sender().text() == 'Химия':
+        elif self.sender().text() == 'Химия':
             self.second_form = ChemWindow(self)
-        if self.sender().text() == 'Биология':
+        elif self.sender().text() == 'Биология':
             self.second_form = BioWindow(self)
         self.second_form.show()
 
     def open_service_window(self):
-        # if self.sender().text() == 'Перейти в свой аккаунт':
-        # self.second_form = AccountWindow()
+        if self.sender().text() == 'Мой аккаунт':
+            self.second_form = AccountWindow()
         if self.sender().text() == 'Настройки':
             self.second_form = SettingsWindow()
-            self.second_form.show()
+        self.second_form.show()
         self.close()
 
     # Отправка кастомных статей по разным предметам
@@ -96,25 +98,39 @@ class SettingsWindow(QMainWindow, Ui_Form_Settings):
         self.text_size.valueChanged.connect(self.fontsize_update)
         self.text_size.setMinimum(12)
         self.text_size.setMaximum(32)
-        self.ToMain.clicked.connect(self.tomain)
+        self.ToMain.clicked.connect(self.open_service_window)
+        self.ToAccount.clicked.connect(self.open_service_window)
 
     def fontsize_update(self):
         global text_size
         text_size = self.text_size.value()
-        print(self.text_size.value())
 
-    def tomain(self):  # функция для возращения на домашнюю страницу
-        self.mainwindow = Mainwindow()
-        self.mainwindow.show()
+    def open_service_window(self):
+        if self.sender().text() == 'Мой аккаунт':
+            self.second_form = AccountWindow()
+        elif self.sender().text() == 'Главная':
+            self.second_form = Mainwindow()
+        self.second_form.show()
         self.close()
 
 
-# class AccountWindow(QWidget, Ui_Form_Math):
-#     def __init__(self, *args):
-#         super().__init__()
-#         # Вызываем метод для загрузки интерфейса из класса Ui_MainWindow,
-#         pass
-#         fname = QFileDialog.getOpenFileName(self, 'Выбрать картинку', '')[0]
+class AccountWindow(QMainWindow, Ui_AccountWindow):
+    def __init__(self, *args):
+        super().__init__()
+
+        self.setupUi(self)
+        self.setWindowTitle('One-frog.Study')
+        self.setWindowIcon(QIcon('logo.png'))
+        self.ToMain.clicked.connect(self.open_service_window)
+        self.ToSettings.clicked.connect(self.open_service_window)
+
+    def open_service_window(self):
+        if self.sender().text() == 'Настройки':
+            self.second_form = SettingsWindow()
+        elif self.sender().text() == 'Главная':
+            self.second_form = Mainwindow()
+        self.second_form.show()
+        self.close()
 
 
 def get_fontsize():

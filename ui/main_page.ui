@@ -55,7 +55,7 @@ color:white;
 font-size:32px;
 padding-left:4%;
 text-align:left;
-</string>
+text-decoration:underline;</string>
          </property>
          <property name="text">
           <string>Главная</string>
@@ -73,8 +73,7 @@ padding-left:4%;
 text-align:left;</string>
          </property>
          <property name="text">
-          <string>Перейти в
-свой аккаунт</string>
+          <string>Мой аккаунт</string>
          </property>
         </widget>
        </item>

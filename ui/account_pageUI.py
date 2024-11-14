@@ -9,10 +9,10 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Account_Form(object):
+class Ui_AccountWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1237, 859)
+        MainWindow.resize(1237, 873)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
         MainWindow.setStyleSheet("background-color:rgb(54, 57, 76);")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
@@ -30,33 +30,34 @@ class Ui_Account_Form(object):
         self.frame.setObjectName("frame")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.pushButton_7 = QtWidgets.QPushButton(parent=self.frame)
-        self.pushButton_7.setStyleSheet("background:transparent;\n"
+        self.ToMain = QtWidgets.QPushButton(parent=self.frame)
+        self.ToMain.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:32px;\n"
 "padding-left:4%;\n"
 "text-align:left;\n"
 "")
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.verticalLayout.addWidget(self.pushButton_7)
-        self.pushButton_5 = QtWidgets.QPushButton(parent=self.frame)
-        self.pushButton_5.setStyleSheet("background:transparent;\n"
+        self.ToMain.setObjectName("ToMain")
+        self.verticalLayout.addWidget(self.ToMain)
+        self.ToAccount = QtWidgets.QPushButton(parent=self.frame)
+        self.ToAccount.setStyleSheet("background:transparent;\n"
+"word-break:break-word;\n"
+"color:white;\n"
+"font-size:30px;\n"
+"padding-left:4%;\n"
+"text-align:left;\n"
+"text-decoration:underline;")
+        self.ToAccount.setObjectName("ToAccount")
+        self.verticalLayout.addWidget(self.ToAccount)
+        self.ToSettings = QtWidgets.QPushButton(parent=self.frame)
+        self.ToSettings.setStyleSheet("background:transparent;\n"
 "word-break:break-word;\n"
 "color:white;\n"
 "font-size:30px;\n"
 "padding-left:4%;\n"
 "text-align:left;")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.verticalLayout.addWidget(self.pushButton_5)
-        self.pushButton_6 = QtWidgets.QPushButton(parent=self.frame)
-        self.pushButton_6.setStyleSheet("background:transparent;\n"
-"word-break:break-word;\n"
-"color:white;\n"
-"font-size:30px;\n"
-"padding-left:4%;\n"
-"text-align:left;")
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.verticalLayout.addWidget(self.pushButton_6)
+        self.ToSettings.setObjectName("ToSettings")
+        self.verticalLayout.addWidget(self.ToSettings)
         self.horizontalLayout.addWidget(self.frame)
         self.frame_2 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_2.setMinimumSize(QtCore.QSize(500, 800))
@@ -66,7 +67,7 @@ class Ui_Account_Form(object):
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_2.setObjectName("frame_2")
         self.label = QtWidgets.QLabel(parent=self.frame_2)
-        self.label.setGeometry(QtCore.QRect(30, 0, 471, 91))
+        self.label.setGeometry(QtCore.QRect(10, 0, 471, 91))
         self.label.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:32px;\n"
@@ -74,18 +75,49 @@ class Ui_Account_Form(object):
 "text-align:left;\n"
 "")
         self.label.setObjectName("label")
-        self.pushButton = QtWidgets.QPushButton(parent=self.frame_2)
-        self.pushButton.setGeometry(QtCore.QRect(140, 650, 231, 71))
-        self.pushButton.setStyleSheet("background-color:rgb(74, 113, 255);\n"
+        self.SaveButton = QtWidgets.QPushButton(parent=self.frame_2)
+        self.SaveButton.setGeometry(QtCore.QRect(170, 380, 231, 61))
+        self.SaveButton.setStyleSheet("background-color:rgb(110, 127, 158);\n"
 "word-break:break-word;\n"
 "color:white;\n"
+"border-radius:10px;\n"
 "font-size:27px;\n"
 "padding-left:4%;\n"
 "text-align:center;")
-        self.pushButton.setObjectName("pushButton")
-        self.lineEdit = QtWidgets.QLineEdit(parent=self.frame_2)
-        self.lineEdit.setGeometry(QtCore.QRect(150, 400, 221, 31))
-        self.lineEdit.setObjectName("lineEdit")
+        self.SaveButton.setObjectName("SaveButton")
+        self.NicknameEdit = QtWidgets.QLineEdit(parent=self.frame_2)
+        self.NicknameEdit.setGeometry(QtCore.QRect(90, 190, 311, 31))
+        self.NicknameEdit.setObjectName("NicknameEdit")
+        self.label_8 = QtWidgets.QLabel(parent=self.frame_2)
+        self.label_8.setGeometry(QtCore.QRect(80, 130, 161, 41))
+        self.label_8.setStyleSheet("background:transparent;\n"
+"color:white;\n"
+"font-size:30px;\n"
+"padding-left:4%;\n"
+"text-align:left;\n"
+"")
+        self.label_8.setObjectName("label_8")
+        self.favoriteClass = QtWidgets.QComboBox(parent=self.frame_2)
+        self.favoriteClass.setGeometry(QtCore.QRect(90, 290, 311, 41))
+        self.favoriteClass.setStyleSheet("background-color: rgb(110, 127, 158);\n"
+"color:white;\n"
+"font-size:20px;\n"
+"border-radius: 10px")
+        self.favoriteClass.setObjectName("favoriteClass")
+        self.favoriteClass.addItem("")
+        self.favoriteClass.addItem("")
+        self.favoriteClass.addItem("")
+        self.favoriteClass.addItem("")
+        self.favoriteClass.addItem("")
+        self.label_10 = QtWidgets.QLabel(parent=self.frame_2)
+        self.label_10.setGeometry(QtCore.QRect(90, 240, 271, 41))
+        self.label_10.setStyleSheet("background:transparent;\n"
+"color:white;\n"
+"font-size:30px;\n"
+"padding-left:4%;\n"
+"text-align:left;\n"
+"")
+        self.label_10.setObjectName("label_10")
         self.horizontalLayout.addWidget(self.frame_2)
         self.frame_3 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_3.setMinimumSize(QtCore.QSize(500, 800))
@@ -129,7 +161,7 @@ class Ui_Account_Form(object):
         self.chemprogressBar_5.setProperty("value", 24)
         self.chemprogressBar_5.setObjectName("chemprogressBar_5")
         self.label_2 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_2.setGeometry(QtCore.QRect(-10, 120, 191, 51))
+        self.label_2.setGeometry(QtCore.QRect(30, 130, 191, 51))
         self.label_2.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:29px;\n"
@@ -138,7 +170,7 @@ class Ui_Account_Form(object):
 "")
         self.label_2.setObjectName("label_2")
         self.label_4 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_4.setGeometry(QtCore.QRect(-10, 250, 151, 51))
+        self.label_4.setGeometry(QtCore.QRect(30, 240, 151, 51))
         self.label_4.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:29px;\n"
@@ -147,7 +179,7 @@ class Ui_Account_Form(object):
 "")
         self.label_4.setObjectName("label_4")
         self.label_5 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_5.setGeometry(QtCore.QRect(-10, 350, 151, 51))
+        self.label_5.setGeometry(QtCore.QRect(30, 350, 151, 51))
         self.label_5.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:29px;\n"
@@ -156,7 +188,7 @@ class Ui_Account_Form(object):
 "")
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_6.setGeometry(QtCore.QRect(0, 460, 151, 51))
+        self.label_6.setGeometry(QtCore.QRect(30, 460, 151, 51))
         self.label_6.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:29px;\n"
@@ -165,7 +197,7 @@ class Ui_Account_Form(object):
 "")
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_7.setGeometry(QtCore.QRect(0, 660, 151, 51))
+        self.label_7.setGeometry(QtCore.QRect(20, 650, 151, 51))
         self.label_7.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:29px;\n"
@@ -175,13 +207,6 @@ class Ui_Account_Form(object):
         self.label_7.setObjectName("label_7")
         self.horizontalLayout.addWidget(self.frame_3)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1237, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -189,11 +214,18 @@ class Ui_Account_Form(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton_7.setText(_translate("MainWindow", "Главная"))
-        self.pushButton_5.setText(_translate("MainWindow", "Мой аккаунт"))
-        self.pushButton_6.setText(_translate("MainWindow", "Настройки"))
+        self.ToMain.setText(_translate("MainWindow", "Главная"))
+        self.ToAccount.setText(_translate("MainWindow", "Мой аккаунт"))
+        self.ToSettings.setText(_translate("MainWindow", "Настройки"))
         self.label.setText(_translate("MainWindow", "Информация об аккаунте"))
-        self.pushButton.setText(_translate("MainWindow", "Сохранить!"))
+        self.SaveButton.setText(_translate("MainWindow", "Сохранить!"))
+        self.label_8.setText(_translate("MainWindow", "Никнейм"))
+        self.favoriteClass.setItemText(0, _translate("MainWindow", "-"))
+        self.favoriteClass.setItemText(1, _translate("MainWindow", "Математика"))
+        self.favoriteClass.setItemText(2, _translate("MainWindow", "Физика"))
+        self.favoriteClass.setItemText(3, _translate("MainWindow", "Химия"))
+        self.favoriteClass.setItemText(4, _translate("MainWindow", "Биология"))
+        self.label_10.setText(_translate("MainWindow", "Любимый предмет"))
         self.label_3.setText(_translate("MainWindow", "Информация об успеваемости"))
         self.label_2.setText(_translate("MainWindow", "Математика"))
         self.label_4.setText(_translate("MainWindow", "Физика"))

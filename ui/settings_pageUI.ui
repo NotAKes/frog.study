@@ -73,8 +73,7 @@ padding-left:4%;
 text-align:left;</string>
          </property>
          <property name="text">
-          <string>Перейти в
-свой аккаунт</string>
+          <string>Мой аккаунт</string>
          </property>
         </widget>
        </item>
@@ -86,7 +85,8 @@ word-break:break-word;
 color:white;
 font-size:30px;
 padding-left:4%;
-text-align:left;</string>
+text-align:left;
+text-decoration:underline;</string>
          </property>
          <property name="text">
           <string>Настройки</string>

@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1235, 818)
+        MainWindow.resize(1243, 822)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
         MainWindow.setStyleSheet("background-color:rgb(54, 57, 76);")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
 "font-size:32px;\n"
 "padding-left:4%;\n"
 "text-align:left;\n"
-"")
+"text-decoration:underline;")
         self.ToMain.setObjectName("ToMain")
         self.verticalLayout.addWidget(self.ToMain)
         self.ToAccount = QtWidgets.QPushButton(parent=self.frame)
@@ -221,8 +221,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.ToMain.setText(_translate("MainWindow", "Главная"))
-        self.ToAccount.setText(_translate("MainWindow", "Перейти в\n"
-"свой аккаунт"))
+        self.ToAccount.setText(_translate("MainWindow", "Мой аккаунт"))
         self.ToSettings.setText(_translate("MainWindow", "Настройки"))
         self.math_button.setText(_translate("MainWindow", "Математика"))
         self.label.setText(_translate("MainWindow", "Вперёд к знаниям!"))
