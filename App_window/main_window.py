@@ -65,12 +65,20 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
         fname = QFileDialog.getOpenFileName(
             self, 'Выбрать файл', '',
             'Текстовый (*.txt)')[0]
+
         if fname[-4:] != '.txt':
+            self.senders_text.setText(
+                'Неподдерживаемый формат. Обрабатываются текстовые файлы(.txt) с кодировкой utf-8')
             return
-        with open(fname, encoding='utf-8') as file:
-            text = file.readlines()
-            for i in text:
-                self.senders_text.setText(self.senders_text.toPlainText() + i)
+        try:
+            with open(fname, encoding='utf-8') as file:
+                text = file.readlines()
+                for i in text:
+                    self.senders_text.setText(self.senders_text.toPlainText() + i)
+        except UnicodeDecodeError:
+            self.senders_text.setText(
+                'Неподдерживаемый формат. Обрабатываются текстовые файлы(.txt) с кодировкой utf-8')
+            return
 
     def send_article(self):
         con = sqlite3.connect('db_name.sqlite')
