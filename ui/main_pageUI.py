@@ -76,6 +76,9 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "background-color :rgb(128, 149, 184);}")
         self.math_button.setObjectName("math_button")
+        self.study_buttons = QtWidgets.QButtonGroup(MainWindow)
+        self.study_buttons.setObjectName("study_buttons")
+        self.study_buttons.addButton(self.math_button)
         self.math_progression = QtWidgets.QProgressBar(parent=self.frame_2)
         self.math_progression.setGeometry(QtCore.QRect(370, 170, 118, 23))
         self.math_progression.setStyleSheet("color:white;")
@@ -97,6 +100,7 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "background-color :rgb(128, 149, 184);}")
         self.chem_button.setObjectName("chem_button")
+        self.study_buttons.addButton(self.chem_button)
         self.phys_button = QtWidgets.QPushButton(parent=self.frame_2)
         self.phys_button.setGeometry(QtCore.QRect(50, 410, 451, 61))
         self.phys_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
@@ -108,6 +112,7 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "background-color :rgb(128, 149, 184);}")
         self.phys_button.setObjectName("phys_button")
+        self.study_buttons.addButton(self.phys_button)
         self.bio_button = QtWidgets.QPushButton(parent=self.frame_2)
         self.bio_button.setGeometry(QtCore.QRect(50, 540, 451, 61))
         self.bio_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
@@ -120,6 +125,7 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "background-color :rgb(128, 149, 184);}")
         self.bio_button.setObjectName("bio_button")
+        self.study_buttons.addButton(self.bio_button)
         self.chem_progression = QtWidgets.QProgressBar(parent=self.frame_2)
         self.chem_progression.setGeometry(QtCore.QRect(370, 300, 118, 23))
         self.chem_progression.setStyleSheet("color:white;")
@@ -169,7 +175,7 @@ class Ui_MainWindow(object):
 "background-color :rgb(128, 149, 184);}")
         self.confirm_send.setObjectName("confirm_send")
         self.send_button = QtWidgets.QPushButton(parent=self.frame_3)
-        self.send_button.setGeometry(QtCore.QRect(60, 150, 411, 41))
+        self.send_button.setGeometry(QtCore.QRect(60, 210, 411, 41))
         self.send_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:25px;\n"
@@ -180,7 +186,7 @@ class Ui_MainWindow(object):
 "background-color :rgb(128, 149, 184);}")
         self.send_button.setObjectName("send_button")
         self.label_3 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_3.setGeometry(QtCore.QRect(210, 210, 101, 31))
+        self.label_3.setGeometry(QtCore.QRect(210, 260, 101, 31))
         self.label_3.setStyleSheet("QLabel{\n"
 "color:white;\n"
 "font-size:25px;\n"
@@ -189,7 +195,7 @@ class Ui_MainWindow(object):
 "border-radius: 10px;}")
         self.label_3.setObjectName("label_3")
         self.senders_text = QtWidgets.QTextEdit(parent=self.frame_3)
-        self.senders_text.setGeometry(QtCore.QRect(60, 260, 411, 341))
+        self.senders_text.setGeometry(QtCore.QRect(60, 300, 411, 301))
         self.senders_text.setStyleSheet("color:white;\n"
 "font-size:25px;\n"
 "background:rgb(117, 126, 168);\n"
@@ -211,6 +217,13 @@ class Ui_MainWindow(object):
         self.label_4.setStyleSheet("font-size:22px;\n"
 "color:white;")
         self.label_4.setObjectName("label_4")
+        self.title_edit = QtWidgets.QLineEdit(parent=self.frame_3)
+        self.title_edit.setGeometry(QtCore.QRect(60, 150, 411, 41))
+        self.title_edit.setStyleSheet("color:white;\n"
+"font-size:25px;\n"
+"background:rgb(117, 126, 168);\n"
+"border: 2px solid rgb(52, 56, 75);")
+        self.title_edit.setObjectName("title_edit")
         self.horizontalLayout.addWidget(self.frame_3)
         MainWindow.setCentralWidget(self.centralwidget)
 

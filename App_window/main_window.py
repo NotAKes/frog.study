@@ -7,7 +7,7 @@ from ui.main_pageUI import Ui_MainWindow
 from ui.account_pageUI import Ui_AccountWindow
 from PyQt6 import QtCore, QtWidgets
 # from paragraph_page import Paragraph_show
-from study_windows import MathWindow, PhysWindow, BioWindow, ChemWindow
+from study_windows import StudyWindow
 
 text_size = 1555
 
@@ -17,7 +17,6 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
     # FIXME НЕТ ЗАПРОСОВ В БД
 
     def __init__(self):
-
         super().__init__()
         # Инициализация и обновление данных
         self.setupUi(self)
@@ -28,7 +27,9 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
         self.ToAccount.clicked.connect(self.open_service_window)
         self.send_button.clicked.connect(self.load_article)
         self.confirm_send.clicked.connect(self.send_article)
-        self.math_button.clicked.connect(self.open_study_window)
+        for i in self.study_buttons.buttons():
+            i.clicked.connect(self.open_study_window)
+        self.title_edit.setPlaceholderText('Заголовок статьи...')
         self.senders_text.setPlaceholderText('Написать здесь...')
 
     def progress_update(self):
@@ -48,14 +49,7 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
     # # TODO: доделать окна
 
     def open_study_window(self):
-        if self.sender().text() == 'Математика':
-            self.second_form = MathWindow(self)
-        elif self.sender().text() == 'Физика':
-            self.second_form = PhysWindow(self)
-        elif self.sender().text() == 'Химия':
-            self.second_form = ChemWindow(self)
-        elif self.sender().text() == 'Биология':
-            self.second_form = BioWindow(self)
+        self.second_form = StudyWindow(self.sender().text())
         self.second_form.show()
 
     def open_service_window(self):

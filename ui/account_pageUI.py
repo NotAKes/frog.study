@@ -87,6 +87,9 @@ class Ui_AccountWindow(object):
         self.SaveButton.setObjectName("SaveButton")
         self.NicknameEdit = QtWidgets.QLineEdit(parent=self.frame_2)
         self.NicknameEdit.setGeometry(QtCore.QRect(90, 190, 311, 31))
+        self.NicknameEdit.setStyleSheet("background:rgb(132, 153, 189);\n"
+"color:white;\n"
+"font-size:18px;")
         self.NicknameEdit.setObjectName("NicknameEdit")
         self.label_8 = QtWidgets.QLabel(parent=self.frame_2)
         self.label_8.setGeometry(QtCore.QRect(80, 130, 161, 41))
@@ -99,10 +102,16 @@ class Ui_AccountWindow(object):
         self.label_8.setObjectName("label_8")
         self.favoriteClass = QtWidgets.QComboBox(parent=self.frame_2)
         self.favoriteClass.setGeometry(QtCore.QRect(90, 290, 311, 41))
-        self.favoriteClass.setStyleSheet("background-color: rgb(110, 127, 158);\n"
+        self.favoriteClass.setStyleSheet("QComboBox{background-color: rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:20px;\n"
-"border-radius: 10px")
+"border-radius: 10px;\n"
+"}\n"
+"QComboBox::down-arrow { padding-right: 40px; }\n"
+" QComboBox QListView {\n"
+"color:white; \n"
+"background: rgb(110, 127, 158);\n"
+"}")
         self.favoriteClass.setObjectName("favoriteClass")
         self.favoriteClass.addItem("")
         self.favoriteClass.addItem("")
