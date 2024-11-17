@@ -3,7 +3,7 @@ import sqlite3
 from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtCore import QRectF
 from PyQt6.QtWidgets import QLabel
-
+from main_window import get_fontsize
 
 class Paragraph_show(QtWidgets.QWidget):
     def __init__(self, parent=None):
@@ -27,7 +27,7 @@ class Paragraph_show(QtWidgets.QWidget):
         con = sqlite3.connect('db_name.sqlite')
         self.paragraphs = con.cursor().execute(""" """).fetchone()
         con.close()
-        self.paragraphs = [f'wefiuhwefiojnwefijnwfijnwfijnw{QRectF(0, 0, 20, 20)}т\n\n\nijnwifojnwefijnweif']
+        self.paragraphs = [f'wefiuhwefiojnwefijnwfijnwfijnw{get_fontsize()}т\n\n\nijnwifojnwefijnweif']
         self.main_label.setText(self.paragraphs[0])
 
 

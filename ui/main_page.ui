@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1235</width>
-    <height>818</height>
+    <width>1243</width>
+    <height>822</height>
    </rect>
   </property>
   <property name="cursor">
@@ -48,14 +48,14 @@ QPushButton:hover{text-decoration:underline}</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton_7">
+        <widget class="QPushButton" name="ToMain">
          <property name="styleSheet">
           <string notr="true">background:transparent;
 color:white;
 font-size:32px;
 padding-left:4%;
 text-align:left;
-</string>
+text-decoration:underline;</string>
          </property>
          <property name="text">
           <string>Главная</string>
@@ -63,7 +63,7 @@ text-align:left;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_5">
+        <widget class="QPushButton" name="ToAccount">
          <property name="styleSheet">
           <string notr="true">background:transparent;
 word-break:break-word;
@@ -73,13 +73,12 @@ padding-left:4%;
 text-align:left;</string>
          </property>
          <property name="text">
-          <string>Перейти в
-свой аккаунт</string>
+          <string>Мой аккаунт</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_6">
+        <widget class="QPushButton" name="ToSettings">
          <property name="styleSheet">
           <string notr="true">background:transparent;
 word-break:break-word;
@@ -141,6 +140,9 @@ background-color :rgb(128, 149, 184);}</string>
        <property name="text">
         <string>Математика</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">study_buttons</string>
+       </attribute>
       </widget>
       <widget class="QProgressBar" name="math_progression">
        <property name="geometry">
@@ -197,6 +199,9 @@ background-color :rgb(128, 149, 184);}</string>
        <property name="text">
         <string>Химия</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">study_buttons</string>
+       </attribute>
       </widget>
       <widget class="QPushButton" name="phys_button">
        <property name="geometry">
@@ -220,6 +225,9 @@ background-color :rgb(128, 149, 184);}</string>
        <property name="text">
         <string>Физика</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">study_buttons</string>
+       </attribute>
       </widget>
       <widget class="QPushButton" name="bio_button">
        <property name="geometry">
@@ -244,6 +252,9 @@ background-color :rgb(128, 149, 184);}</string>
        <property name="text">
         <string>Биология</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">study_buttons</string>
+       </attribute>
       </widget>
       <widget class="QProgressBar" name="chem_progression">
        <property name="geometry">
@@ -371,7 +382,7 @@ background-color :rgb(128, 149, 184);}</string>
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>150</y>
+         <y>210</y>
          <width>411</width>
          <height>41</height>
         </rect>
@@ -394,7 +405,7 @@ background-color :rgb(128, 149, 184);}</string>
        <property name="geometry">
         <rect>
          <x>210</x>
-         <y>210</y>
+         <y>260</y>
          <width>101</width>
          <height>31</height>
         </rect>
@@ -415,9 +426,9 @@ border-radius: 10px;}</string>
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>260</y>
+         <y>300</y>
          <width>411</width>
-         <height>341</height>
+         <height>301</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -487,6 +498,22 @@ color:white;</string>
         <string>Выберите область:</string>
        </property>
       </widget>
+      <widget class="QLineEdit" name="title_edit">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>150</y>
+         <width>411</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:white;
+font-size:25px;
+background:rgb(117, 126, 168);
+border: 2px solid rgb(52, 56, 75);</string>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -494,4 +521,7 @@ color:white;</string>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="study_buttons"/>
+ </buttongroups>
 </ui>
