@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Form_Paragraph(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1015, 555)
+        Form.resize(902, 699)
         Form.setStyleSheet("QWidget{background:rgb(54, 57, 76);}\n"
 "QPushButton{color:white;\n"
 "background:transparent;\n"
@@ -22,37 +22,40 @@ class Ui_Form_Paragraph(object):
 "QScrollArea{border:1px solid  rgb(231, 251, 255);}")
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.frame = QtWidgets.QFrame(parent=Form)
-        self.frame.setMinimumSize(QtCore.QSize(0, 75))
-        self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame.setObjectName("frame")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame)
+        self.title_frame = QtWidgets.QFrame(parent=Form)
+        self.title_frame.setMinimumSize(QtCore.QSize(0, 40))
+        self.title_frame.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.title_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.title_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.title_frame.setObjectName("title_frame")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.title_frame)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.goback = QtWidgets.QPushButton(parent=self.frame)
+        self.goback = QtWidgets.QPushButton(parent=self.title_frame)
         self.goback.setMaximumSize(QtCore.QSize(40, 16777215))
         self.goback.setObjectName("goback")
         self.horizontalLayout.addWidget(self.goback)
-        self.title = QtWidgets.QLabel(parent=self.frame)
+        self.title = QtWidgets.QLabel(parent=self.title_frame)
         self.title.setMaximumSize(QtCore.QSize(1250, 75))
         self.title.setStyleSheet("color:white;\n"
-"font-size:34px;\n"
+"font-size:32px;\n"
 "text-align:center;")
+        self.title.setText("")
         self.title.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.title.setObjectName("title")
         self.horizontalLayout.addWidget(self.title)
-        self.markasread = QtWidgets.QCheckBox(parent=self.frame)
+        self.markasread = QtWidgets.QCheckBox(parent=self.title_frame)
+        self.markasread.setMaximumSize(QtCore.QSize(285, 16777215))
         self.markasread.setStyleSheet("color:white;\n"
 "font-size:20px;\n"
 "text-align:center;")
         self.markasread.setObjectName("markasread")
         self.horizontalLayout.addWidget(self.markasread)
-        self.verticalLayout.addWidget(self.frame)
-        self.textBrowser = QtWidgets.QTextBrowser(parent=Form)
-        self.textBrowser.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.textBrowser.setStyleSheet("border-top:1px solid rgb(231, 251, 255);")
-        self.textBrowser.setObjectName("textBrowser")
-        self.verticalLayout.addWidget(self.textBrowser)
+        self.verticalLayout.addWidget(self.title_frame)
+        self.paragraph = QtWidgets.QTextBrowser(parent=Form)
+        self.paragraph.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.paragraph.setStyleSheet("border-top:1px solid rgb(231, 251, 255);")
+        self.paragraph.setObjectName("paragraph")
+        self.verticalLayout.addWidget(self.paragraph)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -61,10 +64,9 @@ class Ui_Form_Paragraph(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.goback.setText(_translate("Form", "a"))
-        self.title.setText(_translate("Form", "Математика"))
-        self.markasread.setText(_translate("Form", "Пометить как прочитанное"))
-        self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.markasread.setText(_translate("Form", "Параграф не прочитан"))
+        self.paragraph.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;\"><br /></p></body></html>"))

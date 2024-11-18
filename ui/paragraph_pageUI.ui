@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1015</width>
-    <height>555</height>
+    <width>902</width>
+    <height>699</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,11 +24,17 @@ QScrollArea{border:1px solid  rgb(231, 251, 255);}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="title_frame">
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>75</height>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>60</height>
       </size>
      </property>
      <property name="frameShape">
@@ -61,11 +67,11 @@ QScrollArea{border:1px solid  rgb(231, 251, 255);}</string>
         </property>
         <property name="styleSheet">
          <string notr="true">color:white;
-font-size:34px;
+font-size:32px;
 text-align:center;</string>
         </property>
         <property name="text">
-         <string>Математика</string>
+         <string/>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -74,13 +80,19 @@ text-align:center;</string>
       </item>
       <item>
        <widget class="QCheckBox" name="markasread">
+        <property name="maximumSize">
+         <size>
+          <width>285</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">color:white;
 font-size:20px;
 text-align:center;</string>
         </property>
         <property name="text">
-         <string>Пометить как прочитанное</string>
+         <string>Параграф не прочитан</string>
         </property>
        </widget>
       </item>
@@ -88,7 +100,7 @@ text-align:center;</string>
     </widget>
    </item>
    <item>
-    <widget class="QTextBrowser" name="textBrowser">
+    <widget class="QTextBrowser" name="paragraph">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -102,8 +114,8 @@ text-align:center;</string>
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
