@@ -49,8 +49,6 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
         con.close()
 
     # Функции открытия других окон
-    # # TODO: доделать окна
-
     def open_study_window(self):
         self.second_form = StudyWindow(self.sender().text())
         self.second_form.show()
@@ -146,7 +144,7 @@ class StudyWindow(QWidget, Ui_Form_Study):
         self.setupUi(self)
 
         self.get_paragraphs_title()
-        self.fill_scrollareas('author', [str(i) for i in range(100)])
+        self.fill_scrollareas('author', self.paragraphs_title_authors)
         self.fill_scrollareas('user', [str(i) for i in range(100, 200)])
         self.setWindowTitle('One-frog.Study')
         self.setWindowIcon(QIcon('logo_favicon.png'))
@@ -158,7 +156,7 @@ class StudyWindow(QWidget, Ui_Form_Study):
         self.vbox = QVBoxLayout()
         self.widget = QWidget()
         for i in authors_list:
-            self.button = QPushButton(i)
+            self.button = QPushButton(i[0])
             self.button.clicked.connect(self.open_paragraph_window)
             self.vbox.addWidget(self.button)
         self.widget.setLayout(self.vbox)
@@ -169,8 +167,9 @@ class StudyWindow(QWidget, Ui_Form_Study):
 
     def get_paragraphs_title(self):
         con = sqlite3.connect('db_name.sqlite')
-        # Выполнение запроса и получение всех результатов
-        self.paragraphs_title_authors = con.cursor().execute(""" """).fetchall()
+        # Выполнение запроса и получение
+        self.paragraphs_title_authors = con.cursor().execute(f""" SELECT title FROM articles
+                                                                 WHERE sclass = '{self.sclass}' """).fetchall()
         self.paragraphs_title_users = con.cursor().execute(""" """).fetchall()
         con.close()
 
@@ -192,7 +191,13 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         self.setWindowIcon(QIcon('logo_favicon.png'))
         self.title.setText(self.title_text)
         self.markasread.clicked.connect(self.changestatus)
-        self.paragraph.setText('wefewfwefwefwefwefwef')
+        con = sqlite3.connect('db_name.sqlite')
+        print(self.title)
+        # Выполнение запроса и получение всех результатов
+        self.paragraph_text = con.cursor().execute(f""" SELECT paragraph_text FROM articles
+                                                                         WHERE title = '{self.title_text}' """).fetchone()
+        con.close()
+        self.paragraph.setText(self.paragraph_text[0])
         font = QFont()
         font.setPointSize(text_size)
         self.paragraph.setFont(font)
