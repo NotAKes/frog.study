@@ -1,6 +1,6 @@
 import sys
 import sqlite3
-from PyQt6.QtGui import QIcon, QFont
+from PyQt6.QtGui import QIcon, QFont, QPixmap
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QWidget, QVBoxLayout
 from ui.settings_pageUI import Ui_Form_Settings
@@ -21,8 +21,10 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         # Инициализация и обновление данных
         self.setupUi(self)
+        pixmap = QPixmap('logo_main.png')
+        self.logo.setPixmap(pixmap)
         self.setWindowTitle('One-frog.Study')
-        self.setWindowIcon(QIcon('logo.png'))
+        self.setWindowIcon(QIcon('logo_favicon.png'))
         self.progress_update()
         self.ToSettings.clicked.connect(self.open_service_window)
         self.ToAccount.clicked.connect(self.open_service_window)
@@ -92,8 +94,10 @@ class SettingsWindow(QMainWindow, Ui_Form_Settings):
     def __init__(self, *args):
         super().__init__()
         self.setupUi(self)
+        pixmap = QPixmap('logo_main.png')
+        self.logo.setPixmap(pixmap)
         self.setWindowTitle('One-frog.Study')
-        self.setWindowIcon(QIcon('logo.png'))
+        self.setWindowIcon(QIcon('logo_favicon.png'))
         self.textBrowser.setOpenExternalLinks(True)
         self.text_size.setValue(text_size)
         self.text_size.valueChanged.connect(self.fontsize_update)
@@ -119,8 +123,10 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
     def __init__(self, *args):
         super().__init__()
         self.setupUi(self)
+        pixmap = QPixmap('logo_main.png')
+        self.logo.setPixmap(pixmap)
         self.setWindowTitle('One-frog.Study')
-        self.setWindowIcon(QIcon('logo.png'))
+        self.setWindowIcon(QIcon('logo_favicon.png'))
         self.ToMain.clicked.connect(self.open_service_window)
         self.ToSettings.clicked.connect(self.open_service_window)
 
@@ -138,11 +144,12 @@ class StudyWindow(QWidget, Ui_Form_Study):
         super().__init__()
         self.sclass = sclass
         self.setupUi(self)
+
         self.get_paragraphs_title()
-        self.fill_scrollareas('author', [str(i) for i in range(10)])
-        self.fill_scrollareas('user', [str(i) for i in range(10, 20)])
+        self.fill_scrollareas('author', [str(i) for i in range(100)])
+        self.fill_scrollareas('user', [str(i) for i in range(100, 200)])
         self.setWindowTitle('One-frog.Study')
-        self.setWindowIcon(QIcon('logo.png'))
+        self.setWindowIcon(QIcon('logo_favicon.png'))
         self.title.setText(self.sclass)
         self.title.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -180,8 +187,9 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         self.sclass = sclass
         self.setupUi(self)
         self.goback.clicked.connect(self.open_study_window)
+        self.goback.setIcon(QIcon('arrow_back.png'))
         self.setWindowTitle('One-frog.Study')
-        self.setWindowIcon(QIcon('logo.png'))
+        self.setWindowIcon(QIcon('logo_favicon.png'))
         self.title.setText(self.title_text)
         self.markasread.clicked.connect(self.changestatus)
         self.paragraph.setText('wefewfwefwefwefwefwef')

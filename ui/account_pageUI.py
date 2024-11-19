@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_AccountWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1237, 873)
+        MainWindow.resize(1237, 836)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
         MainWindow.setStyleSheet("background-color:rgb(54, 57, 76);")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
@@ -24,12 +24,17 @@ class Ui_AccountWindow(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.frame = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame.setMinimumSize(QtCore.QSize(0, 500))
-        self.frame.setMaximumSize(QtCore.QSize(250, 500))
+        self.frame.setMaximumSize(QtCore.QSize(250, 1000))
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame.setObjectName("frame")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout.setObjectName("verticalLayout")
+        self.logo = QtWidgets.QLabel(parent=self.frame)
+        self.logo.setMaximumSize(QtCore.QSize(144, 144))
+        self.logo.setText("")
+        self.logo.setObjectName("logo")
+        self.verticalLayout.addWidget(self.logo)
         self.ToMain = QtWidgets.QPushButton(parent=self.frame)
         self.ToMain.setStyleSheet("background:transparent;\n"
 "color:white;\n"
@@ -58,7 +63,7 @@ class Ui_AccountWindow(object):
 "text-align:left;")
         self.ToSettings.setObjectName("ToSettings")
         self.verticalLayout.addWidget(self.ToSettings)
-        self.horizontalLayout.addWidget(self.frame)
+        self.horizontalLayout.addWidget(self.frame, 0, QtCore.Qt.AlignmentFlag.AlignTop)
         self.frame_2 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_2.setMinimumSize(QtCore.QSize(500, 800))
         self.frame_2.setMaximumSize(QtCore.QSize(800, 1500))
@@ -108,6 +113,7 @@ class Ui_AccountWindow(object):
 "border-radius: 10px;\n"
 "}\n"
 "QComboBox::down-arrow { padding-right: 40px; }\n"
+"QComboBox::drop-down { margin-left: 40px;}\n"
 " QComboBox QListView {\n"
 "color:white; \n"
 "background: rgb(110, 127, 158);\n"
