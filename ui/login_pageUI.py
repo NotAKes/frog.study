@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_LoginWindow(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(513, 400)
+        Dialog.resize(440, 362)
         Dialog.setStyleSheet("QDialog{background-color:rgb(54, 57, 76);}\n"
 "QPushButton:hover{text-decoration:underline}")
         self.login_input = QtWidgets.QLineEdit(parent=Dialog)
@@ -37,42 +37,48 @@ class Ui_LoginWindow(object):
         self.label_2.setStyleSheet("color:white;\n"
 "font-size:26px;")
         self.label_2.setObjectName("label_2")
-        self.login_button = QtWidgets.QPushButton(parent=Dialog)
-        self.login_button.setGeometry(QtCore.QRect(310, 180, 161, 51))
-        self.login_button.setStyleSheet("background-color:rgb(110, 127, 158);\n"
+        self.loginadmin_button = QtWidgets.QPushButton(parent=Dialog)
+        self.loginadmin_button.setGeometry(QtCore.QRect(260, 210, 161, 41))
+        self.loginadmin_button.setStyleSheet("background-color:rgb(110, 127, 158);\n"
 "word-break:break-word;\n"
 "color:white;\n"
 "border-radius:5px;\n"
 "font-size:18px;\n"
 "padding-left:4%;\n"
 "text-align:center;")
-        self.login_button.setObjectName("login_button")
-        self.pushButton = QtWidgets.QPushButton(parent=Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(310, 280, 161, 51))
-        self.pushButton.setStyleSheet("background-color:rgb(110, 127, 158);\n"
+        self.loginadmin_button.setObjectName("loginadmin_button")
+        self.loginstudent_button = QtWidgets.QPushButton(parent=Dialog)
+        self.loginstudent_button.setGeometry(QtCore.QRect(260, 300, 161, 41))
+        self.loginstudent_button.setStyleSheet("background-color:rgb(110, 127, 158);\n"
 "word-break:break-word;\n"
 "color:white;\n"
 "border-radius:5px;\n"
 "font-size:18px;\n"
 "padding-left:4%;\n"
 "text-align:center;")
-        self.pushButton.setObjectName("pushButton")
+        self.loginstudent_button.setObjectName("loginstudent_button")
         self.error_label = QtWidgets.QLabel(parent=Dialog)
-        self.error_label.setGeometry(QtCore.QRect(20, 160, 201, 91))
+        self.error_label.setGeometry(QtCore.QRect(20, 200, 201, 91))
         self.error_label.setStyleSheet("color:orange;\n"
 "font-size:20px;\n"
 "text-align: justify;\n"
 "justify-content: center;")
+        self.error_label.setText("")
         self.error_label.setObjectName("error_label")
-        self.eye = QtWidgets.QLabel(parent=Dialog)
-        self.eye.setGeometry(QtCore.QRect(440, 90, 61, 51))
-        self.eye.setText("")
-        self.eye.setObjectName("eye")
         self.label_4 = QtWidgets.QLabel(parent=Dialog)
-        self.label_4.setGeometry(QtCore.QRect(380, 240, 41, 21))
+        self.label_4.setGeometry(QtCore.QRect(330, 260, 41, 21))
         self.label_4.setStyleSheet("color:white;\n"
 "font-size:18px;")
         self.label_4.setObjectName("label_4")
+        self.password_button = QtWidgets.QPushButton(parent=Dialog)
+        self.password_button.setGeometry(QtCore.QRect(110, 150, 171, 28))
+        self.password_button.setStyleSheet("color:rgb(188, 211, 241);\n"
+"word-break:break-word;\n"
+"border-radius:5px;\n"
+"font-size:18px;\n"
+"padding-left:4%;\n"
+"text-align:center;")
+        self.password_button.setObjectName("password_button")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -82,8 +88,7 @@ class Ui_LoginWindow(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label.setText(_translate("Dialog", "Логин"))
         self.label_2.setText(_translate("Dialog", "Пароль"))
-        self.login_button.setText(_translate("Dialog", "Войти как админ"))
-        self.pushButton.setText(_translate("Dialog", "Войти как ученик"))
-        self.error_label.setText(_translate("Dialog", "Неверный логин \n"
-"или пароль"))
+        self.loginadmin_button.setText(_translate("Dialog", "Войти как админ"))
+        self.loginstudent_button.setText(_translate("Dialog", "Войти как ученик"))
         self.label_4.setText(_translate("Dialog", "ИЛИ"))
+        self.password_button.setText(_translate("Dialog", "Показать пароль?"))
