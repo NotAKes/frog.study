@@ -66,7 +66,7 @@ class Ui_LoginWindow(object):
         self.error_label.setText("")
         self.error_label.setObjectName("error_label")
         self.eye = QtWidgets.QLabel(parent=Dialog)
-        self.eye.setGeometry(QtCore.QRect(340, 100, 41, 31))
+        self.eye.setGeometry(QtCore.QRect(340, 90, 51, 41))
         self.eye.setText("")
         self.eye.setObjectName("eye")
         self.label_4 = QtWidgets.QLabel(parent=Dialog)
