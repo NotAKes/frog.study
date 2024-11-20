@@ -1,16 +1,27 @@
 import sys
 import sqlite3
+import bcrypt
 from PyQt6.QtGui import QIcon, QFont, QPixmap
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QWidget, QVBoxLayout
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QWidget, QVBoxLayout, QDialog
 from ui.settings_pageUI import Ui_Form_Settings
 from ui.main_pageUI import Ui_MainWindow
 from ui.account_pageUI import Ui_AccountWindow
 from ui.study_pageUI import Ui_Form_Study
 from ui.paragraph_pageUI import Ui_Form_Paragraph
+from ui.login_pageUI import Ui_LoginWindow
 from PyQt6 import QtCore, QtWidgets
 
 text_size = 17
+
+class LoginWindow(QDialog, Ui_LoginWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setWindowTitle('One-frog.Study')
+        self.setWindowIcon(QIcon('logo_favicon.png'))
+        pixmap = QPixmap('visibility.png')
+        self.eye.setPixmap(pixmap)
 
 
 class Mainwindow(QMainWindow, Ui_MainWindow):
@@ -192,7 +203,6 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         self.title.setText(self.title_text)
         self.markasread.clicked.connect(self.changestatus)
         con = sqlite3.connect('db_name.sqlite')
-        print(self.title)
         # Выполнение запроса и получение всех результатов
         self.paragraph_text = con.cursor().execute(f""" SELECT paragraph_text FROM articles
                                                                          WHERE title = '{self.title_text}' """).fetchone()
@@ -223,6 +233,6 @@ if __name__ == '__main__':  # запуск мейн окна
     if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QApplication(sys.argv)
-    main = Mainwindow()
+    main = LoginWindow()
     main.show()
     sys.exit(app.exec())
