@@ -1,6 +1,6 @@
 import sys
 import sqlite3
-# import bcrypt
+from hashlib import sha256
 from PyQt6.QtGui import QIcon, QFont, QPixmap
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QWidget, QVBoxLayout, QDialog, \
@@ -25,10 +25,26 @@ class LoginWindow(QDialog, Ui_LoginWindow):
         self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
         self.password_button.clicked.connect(self.change_visibility)
         self.loginstudent_button.clicked.connect(self.login_as_student)
-        # Неверный логин \nили пароль
+        self.loginadmin_button.clicked.connect(self.login_as_admin)
 
     def login_as_student(self):
         self.second_form = Mainwindow(0)
+        self.second_form.show()
+        self.close()
+
+    def login_as_admin(self):
+        con = sqlite3.connect('db_name.sqlite')
+        # Выполнение запроса и получение
+        self.admin = con.cursor().execute(f""" SELECT id, password FROM users
+                                                                        WHERE is_admin = 1 AND username = '{self.login_input.text()}'""").fetchone()
+        con.close()
+        if not bool(self.admin[0]):
+            self.error_label.setText('Неверный логин \nили пароль')
+            return
+        if not sha256(self.password_input.text().encode('utf-8')).hexdigest() == self.admin[1]:
+            self.error_label.setText('Неверный логин \nили пароль')
+            return
+        self.second_form = Mainwindow(1)
         self.second_form.show()
         self.close()
 
