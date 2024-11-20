@@ -1,25 +1,54 @@
 import sys
 import sqlite3
+# import bcrypt
 from PyQt6.QtGui import QIcon, QFont, QPixmap
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QWidget, QVBoxLayout
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QWidget, QVBoxLayout, QDialog, \
+    QLineEdit
 from ui.settings_pageUI import Ui_Form_Settings
 from ui.main_pageUI import Ui_MainWindow
 from ui.account_pageUI import Ui_AccountWindow
 from ui.study_pageUI import Ui_Form_Study
 from ui.paragraph_pageUI import Ui_Form_Paragraph
+from ui.login_pageUI import Ui_LoginWindow
 from PyQt6 import QtCore, QtWidgets
 
 text_size = 17
+
+
+class LoginWindow(QDialog, Ui_LoginWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setWindowTitle('One-frog.Study')
+        self.setWindowIcon(QIcon('logo_favicon.png'))
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password_button.clicked.connect(self.change_visibility)
+        self.loginstudent_button.clicked.connect(self.login_as_student)
+        # Неверный логин \nили пароль
+
+    def login_as_student(self):
+        self.second_form = Mainwindow(0)
+        self.second_form.show()
+        self.close()
+
+    def change_visibility(self):
+        if self.password_input.echoMode() == QLineEdit.EchoMode.Password:
+            self.password_button.setText('Скрыть пароль?')
+            self.password_input.setEchoMode(QLineEdit.EchoMode.Normal)
+        else:
+            self.password_button.setText('Показать пароль?')
+            self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
 
 class Mainwindow(QMainWindow, Ui_MainWindow):
 
     # FIXME НЕТ ЗАПРОСОВ В БД
 
-    def __init__(self):
+    def __init__(self, id):
         super().__init__()
         # Инициализация и обновление данных
+        self.id = id
         self.setupUi(self)
         pixmap = QPixmap('logo_main.png')
         self.logo.setPixmap(pixmap)
@@ -55,9 +84,9 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 
     def open_service_window(self):
         if self.sender().text() == 'Мой аккаунт':
-            self.second_form = AccountWindow()
+            self.second_form = AccountWindow(self.id)
         elif self.sender().text() == 'Настройки':
-            self.second_form = SettingsWindow()
+            self.second_form = SettingsWindow(self.id)
         self.second_form.show()
         self.close()
 
@@ -89,8 +118,9 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 
 
 class SettingsWindow(QMainWindow, Ui_Form_Settings):
-    def __init__(self, *args):
+    def __init__(self, id, *args):
         super().__init__()
+        self.id = id
         self.setupUi(self)
         pixmap = QPixmap('logo_main.png')
         self.logo.setPixmap(pixmap)
@@ -110,16 +140,17 @@ class SettingsWindow(QMainWindow, Ui_Form_Settings):
 
     def open_service_window(self):
         if self.sender().text() == 'Мой аккаунт':
-            self.second_form = AccountWindow()
+            self.second_form = AccountWindow(self.id)
         elif self.sender().text() == 'Главная':
-            self.second_form = Mainwindow()
+            self.second_form = Mainwindow(self.id)
         self.second_form.show()
         self.close()
 
 
 class AccountWindow(QMainWindow, Ui_AccountWindow):
-    def __init__(self, *args):
+    def __init__(self, id, *args):
         super().__init__()
+        self.id = id
         self.setupUi(self)
         pixmap = QPixmap('logo_main.png')
         self.logo.setPixmap(pixmap)
@@ -130,9 +161,9 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
 
     def open_service_window(self):
         if self.sender().text() == 'Настройки':
-            self.second_form = SettingsWindow()
+            self.second_form = SettingsWindow(self.id)
         elif self.sender().text() == 'Главная':
-            self.second_form = Mainwindow()
+            self.second_form = Mainwindow(self.id)
         self.second_form.show()
         self.close()
 
@@ -192,7 +223,6 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         self.title.setText(self.title_text)
         self.markasread.clicked.connect(self.changestatus)
         con = sqlite3.connect('db_name.sqlite')
-        print(self.title)
         # Выполнение запроса и получение всех результатов
         self.paragraph_text = con.cursor().execute(f""" SELECT paragraph_text FROM articles
                                                                          WHERE title = '{self.title_text}' """).fetchone()
@@ -223,6 +253,6 @@ if __name__ == '__main__':  # запуск мейн окна
     if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QApplication(sys.argv)
-    main = Mainwindow()
+    main = LoginWindow()
     main.show()
     sys.exit(app.exec())
