@@ -38,7 +38,7 @@ class LoginWindow(QDialog, Ui_LoginWindow):
         self.admin = con.cursor().execute(f""" SELECT id, password FROM users
                                                                         WHERE is_admin = 1 AND username = '{self.login_input.text()}'""").fetchone()
         con.close()
-        if not bool(self.admin[0]):
+        if not bool(self.admin):
             self.error_label.setText('Неверный логин \nили пароль')
             return
         if not sha256(self.password_input.text().encode('utf-8')).hexdigest() == self.admin[1]:
