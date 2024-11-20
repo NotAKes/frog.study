@@ -3,7 +3,7 @@ import sqlite3
 from hashlib import sha256
 from PyQt6.QtGui import QIcon, QFont, QPixmap
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QWidget, QVBoxLayout, QDialog, \
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QWidget, QVBoxLayout, QDialog, \
     QLineEdit
 from ui.settings_pageUI import Ui_Form_Settings
 from ui.main_pageUI import Ui_MainWindow
@@ -28,7 +28,7 @@ class LoginWindow(QDialog, Ui_LoginWindow):
         self.loginadmin_button.clicked.connect(self.login_as_admin)
 
     def login_as_student(self):
-        self.second_form = Mainwindow(0)
+        self.second_form = Mainwindow(1)
         self.second_form.show()
         self.close()
 
@@ -44,7 +44,7 @@ class LoginWindow(QDialog, Ui_LoginWindow):
         if not sha256(self.password_input.text().encode('utf-8')).hexdigest() == self.admin[1]:
             self.error_label.setText('Неверный логин \nили пароль')
             return
-        self.second_form = Mainwindow(1)
+        self.second_form = Mainwindow(self.admin[0])
         self.second_form.show()
         self.close()
 
@@ -84,13 +84,13 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 
         con = sqlite3.connect('db_name.sqlite')
         # Выполнение запроса и получение результатов по успеваемости
-        self.student_progress = con.cursor().execute(""" """).fetchall()
+        self.student_progress = con.cursor().execute(f""" SELECT math_progression,phys_progression,bio_progression,chem_progression FROM users
+                                                                        WHERE id = '{self.id}'""").fetchone()
         # Запись успеваемости в шкалы успеваемости каждого предмета
-        # # TODO: доделать запись
-        # # self.math_progression.setValue()
-        # # self.phys_progression.setValue()
-        # # self.bio_progression.setValue()
-        # # self.chem_progression.setValue()
+        self.math_progression.setValue(self.student_progress[0])
+        self.phys_progression.setValue(self.student_progress[1])
+        self.bio_progression.setValue(self.student_progress[2])
+        self.chem_progression.setValue(self.student_progress[3])
         con.close()
 
     # Функции открытия других окон
@@ -192,7 +192,6 @@ class StudyWindow(QWidget, Ui_Form_Study):
 
         self.get_paragraphs_title()
         self.fill_scrollareas('author', self.paragraphs_title_authors)
-        self.fill_scrollareas('user', [str(i) for i in range(100, 200)])
         self.setWindowTitle('One-frog.Study')
         self.setWindowIcon(QIcon('logo_favicon.png'))
         self.title.setText(self.sclass)
@@ -251,7 +250,17 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
     def changestatus(self):
         if self.markasread.text() == 'Параграф не прочитан':
             self.markasread.setText('Параграф прочитан')
-            ## TODO ЗАПРОС В БД
+            con = sqlite3.connect('db_name.sqlite')
+            # Выполнение запроса и получение всех результатов
+
+            # Запросы на обновление процента выполнения по отдельному предмету
+            # Получаем количество помеченных параграфов. Далее делим это количество нацело на число всех параграфов
+            percentage = con.cursor().execute(f""" SELECT count(*) FROM articles 
+                                            WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchone()[0] // con.cursor().execute(
+                f""" SELECT count(*) FROM articles
+                                            WHERE sclass = '{self.sclass}'""").fetchone()[0]
+
+            con.close()
         elif self.markasread.text() == 'Параграф прочитан':
             ## TODO ЗАПРОС В БД
             self.markasread.setText('Параграф не прочитан')
