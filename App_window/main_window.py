@@ -256,8 +256,9 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
             # Запросы на обновление процента выполнения по отдельному предмету
             # Получаем количество помеченных параграфов. Далее делим это количество нацело на число всех параграфов
             percentage = con.cursor().execute(f""" SELECT count(*) FROM articles 
-                                            WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchone()[0] // con.cursor().execute(
-                f""" SELECT count(*) FROM articles
+                                            WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchone()[0] // \
+                         con.cursor().execute(
+                             f""" SELECT count(*) FROM articles
                                             WHERE sclass = '{self.sclass}'""").fetchone()[0]
 
             con.close()
