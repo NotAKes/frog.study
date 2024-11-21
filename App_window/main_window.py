@@ -14,6 +14,12 @@ from ui.login_pageUI import Ui_LoginWindow
 from PyQt6 import QtCore, QtWidgets
 
 text_size = 17
+dict_of_sclass = {
+    'Математика': 'math_progression',
+    'Физика': 'phys_progression',
+    'Биология': 'math_progression',
+    'Химия': 'phys_progression',
+}
 
 
 class LoginWindow(QDialog, Ui_LoginWindow):
@@ -95,7 +101,7 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 
     # Функции открытия других окон
     def open_study_window(self):
-        self.second_form = StudyWindow(self.sender().text())
+        self.second_form = StudyWindow(self.sender().text(), self.id)
         self.second_form.show()
 
     def open_service_window(self):
@@ -185,8 +191,9 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
 
 
 class StudyWindow(QWidget, Ui_Form_Study):
-    def __init__(self, sclass, *args):
+    def __init__(self, sclass, id, *args):
         super().__init__()
+        self.id = id
         self.sclass = sclass
         self.setupUi(self)
 
@@ -220,14 +227,15 @@ class StudyWindow(QWidget, Ui_Form_Study):
         con.close()
 
     def open_paragraph_window(self):
-        self.second_form = ParagraphWindow(self.sender().text(), self.sclass)
+        self.second_form = ParagraphWindow(self.sender().text(), self.sclass, self.id)
         self.second_form.show()
         self.close()
 
 
 class ParagraphWindow(QWidget, Ui_Form_Paragraph):
-    def __init__(self, title, sclass, *args):
+    def __init__(self, title, sclass, id, *args):
         super().__init__()
+        self.id = id
         self.title_text = title
         self.sclass = sclass
         self.setupUi(self)
@@ -273,11 +281,14 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
                                 0] / con.cursor().execute(
             f""" SELECT count(*) FROM articles
                                                     WHERE sclass = '{self.sclass}'""").fetchall()[0][0]) * 100)
-        print(percentage)
+        con.execute(f"""UPDATE users 
+                        SET {dict_of_sclass[self.sclass]} = {percentage}
+                        WHERE id = {self.id}""")
+        con.commit()
         con.close()
 
     def open_study_window(self):
-        self.second_form = StudyWindow(self.sclass)
+        self.second_form = StudyWindow(self.sclass, self.id)
         self.second_form.show()
         self.close()
 
