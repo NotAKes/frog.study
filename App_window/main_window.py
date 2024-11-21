@@ -81,6 +81,7 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
         self.ToAccount.clicked.connect(self.open_service_window)
         self.send_button.clicked.connect(self.load_article)
         self.confirm_send.clicked.connect(self.send_article)
+        self.update_progress.clicked.connect(self.progress_update)
         for i in self.study_buttons.buttons():
             i.clicked.connect(self.open_study_window)
         self.title_edit.setPlaceholderText('Заголовок статьи...')
@@ -174,12 +175,51 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
         super().__init__()
         self.id = id
         self.setupUi(self)
+        self.get_account_info()
+        self.progress_update()
         pixmap = QPixmap('logo_main.png')
         self.logo.setPixmap(pixmap)
         self.setWindowTitle('One-frog.Study')
         self.setWindowIcon(QIcon('logo_favicon.png'))
         self.ToMain.clicked.connect(self.open_service_window)
         self.ToSettings.clicked.connect(self.open_service_window)
+        self.SaveButton.clicked.connect(self.update_account_info)
+
+    def get_account_info(self):
+        con = sqlite3.connect('db_name.sqlite')
+        # Выполнение запроса и получение
+        self.NicknameEdit.setText(con.cursor().execute(f""" SELECT username FROM users
+                                                                     WHERE id = {self.id} """).fetchone()[0])
+        self.favoriteLabel.setText('Текущий любимый: ' + con.cursor().execute(f""" SELECT favorite FROM users
+                                                                     WHERE id = {self.id} """).fetchone()[0])
+        con.close()
+
+    def update_account_info(self):
+        con = sqlite3.connect('db_name.sqlite')
+        # Выполнение запроса и получение
+        con.cursor().execute(f"""UPDATE users
+                                 SET username = '{self.NicknameEdit.text()}'
+                                 WHERE id = {self.id}""")
+        con.cursor().execute(f"""UPDATE users
+                                 SET favorite = '{self.favoriteClass.currentText()}'
+                                 WHERE id = {self.id}""")
+        con.commit()
+        con.close()
+        self.get_account_info()
+
+    def progress_update(self):
+
+        con = sqlite3.connect('db_name.sqlite')
+        # Выполнение запроса и получение результатов по успеваемости
+        self.student_progress = con.cursor().execute(f""" SELECT math_progression,phys_progression,bio_progression,chem_progression,overall_progression FROM users
+                                                                        WHERE id = '{self.id}'""").fetchone()
+        # Запись успеваемости в шкалы успеваемости каждого предмета
+        self.math_progression.setValue(self.student_progress[0])
+        self.phys_progression.setValue(self.student_progress[1])
+        self.bio_progression.setValue(self.student_progress[2])
+        self.chem_progression.setValue(self.student_progress[3])
+        self.overalllprogression.setValue(self.student_progress[4])
+        con.close()
 
     def open_service_window(self):
         if self.sender().text() == 'Настройки':
@@ -248,7 +288,7 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         con = sqlite3.connect('db_name.sqlite')
         #
         self.paragraph_info = con.cursor().execute(f""" SELECT paragraph_text, id, is_read FROM articles
-                                                                         WHERE title = '{self.title_text}' """).fetchone()
+                                                        WHERE title = '{self.title_text}' """).fetchone()
         con.close()
         if bool(self.paragraph_info[2]):
             self.markasread.setChecked(True)
@@ -270,22 +310,36 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
             con.commit()
         elif self.markasread.text() == 'Параграф прочитан':
             con.cursor().execute(f"""UPDATE articles 
-                                                SET is_read = 0 
-                                                WHERE id = {self.paragraph_id}""")
+                                     SET is_read = 0 
+                                     WHERE id = {self.paragraph_id}""")
             con.commit()
             self.markasread.setText('Параграф не прочитан')
+
         # Запросы на обновление процента выполнения по отдельному предмету
         # Получаем количество помеченных параграфов. Далее делим это количество на число всех параграфов, далее умножаем на 100 и округляем до целого
-        percentage = round((con.cursor().execute(f""" SELECT count(*) FROM articles 
-                                                    WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchall()[0][
-                                0] / con.cursor().execute(
-            f""" SELECT count(*) FROM articles
-                                                    WHERE sclass = '{self.sclass}'""").fetchall()[0][0]) * 100)
+        sclass_read = con.cursor().execute(f""" SELECT count(*) FROM articles 
+                                                WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchall()[0][0] # запрос вернет int
+        sclass_all = con.cursor().execute(f""" SELECT count(*) FROM articles
+                                            WHERE sclass = '{self.sclass}'""").fetchall()[0][0] # запрос вернет int
+        percentage_of_sclass = round(sclass_read / sclass_all * 100)
+        # Запросы на обновление процента выполнения по всем предметам
+        # Аналогично
+        overall_read = con.cursor().execute(f""" SELECT count(*) FROM articles 
+                                                 WHERE is_read = 1""").fetchall()[0][0]  # запрос вернет int
+        overall_all = con.cursor().execute(f""" SELECT count(*) FROM articles""").fetchall()[0][0]  # запрос вернет int
+        percentage_overall = round(overall_read / overall_all * 100)
+
+
+        #Обновление данных
         con.execute(f"""UPDATE users 
-                        SET {dict_of_sclass[self.sclass]} = {percentage}
+                        SET {dict_of_sclass[self.sclass]} = {percentage_of_sclass}
+                        WHERE id = {self.id}""")
+        con.execute(f"""UPDATE users 
+                        SET overall_progression = {percentage_overall}
                         WHERE id = {self.id}""")
         con.commit()
         con.close()
+
 
     def open_study_window(self):
         self.second_form = StudyWindow(self.sclass, self.id)

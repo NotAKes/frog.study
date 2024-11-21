@@ -157,7 +157,7 @@ text-align:left;
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>380</y>
+         <y>410</y>
          <width>231</width>
          <height>61</height>
         </rect>
@@ -280,6 +280,23 @@ text-align:left;
         <string>Любимый предмет</string>
        </property>
       </widget>
+      <widget class="QLabel" name="favoriteLabel">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>340</y>
+         <width>311</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size:16px;
+color:rgb(153, 164, 208);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </item>
     <item>
@@ -326,7 +343,7 @@ text-align:left;
         <string>Информация об успеваемости</string>
        </property>
       </widget>
-      <widget class="QProgressBar" name="overalllprogressBar">
+      <widget class="QProgressBar" name="overalllprogression">
        <property name="geometry">
         <rect>
          <x>310</x>
@@ -342,7 +359,7 @@ text-align:left;
         <number>24</number>
        </property>
       </widget>
-      <widget class="QProgressBar" name="physprogressBar_2">
+      <widget class="QProgressBar" name="phys_progression">
        <property name="geometry">
         <rect>
          <x>320</x>
@@ -358,7 +375,7 @@ text-align:left;
         <number>24</number>
        </property>
       </widget>
-      <widget class="QProgressBar" name="mathsprogressBar_3">
+      <widget class="QProgressBar" name="math_progression">
        <property name="geometry">
         <rect>
          <x>320</x>
@@ -374,7 +391,7 @@ text-align:left;
         <number>24</number>
        </property>
       </widget>
-      <widget class="QProgressBar" name="bioprogressBar_4">
+      <widget class="QProgressBar" name="bio_progression">
        <property name="geometry">
         <rect>
          <x>320</x>
@@ -390,7 +407,7 @@ text-align:left;
         <number>24</number>
        </property>
       </widget>
-      <widget class="QProgressBar" name="chemprogressBar_5">
+      <widget class="QProgressBar" name="chem_progression">
        <property name="geometry">
         <rect>
          <x>320</x>
