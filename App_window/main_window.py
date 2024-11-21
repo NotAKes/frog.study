@@ -238,33 +238,43 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         self.title.setText(self.title_text)
         self.markasread.clicked.connect(self.changestatus)
         con = sqlite3.connect('db_name.sqlite')
-        # Выполнение запроса и получение всех результатов
-        self.paragraph_text = con.cursor().execute(f""" SELECT paragraph_text FROM articles
+        #
+        self.paragraph_info = con.cursor().execute(f""" SELECT paragraph_text, id, is_read FROM articles
                                                                          WHERE title = '{self.title_text}' """).fetchone()
         con.close()
-        self.paragraph.setText(self.paragraph_text[0])
+        if bool(self.paragraph_info[2]):
+            self.markasread.setChecked(True)
+            self.markasread.setText('Параграф прочитан')
+        self.paragraph_id = self.paragraph_info[1]
+        self.paragraph.setText(self.paragraph_info[0])
         font = QFont()
         font.setPointSize(text_size)
         self.paragraph.setFont(font)
 
     def changestatus(self):
+        con = sqlite3.connect('db_name.sqlite')
         if self.markasread.text() == 'Параграф не прочитан':
             self.markasread.setText('Параграф прочитан')
-            con = sqlite3.connect('db_name.sqlite')
-            # Выполнение запроса и получение всех результатов
 
-            # Запросы на обновление процента выполнения по отдельному предмету
-            # Получаем количество помеченных параграфов. Далее делим это количество нацело на число всех параграфов
-            percentage = con.cursor().execute(f""" SELECT count(*) FROM articles 
-                                            WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchone()[0] // \
-                         con.cursor().execute(
-                             f""" SELECT count(*) FROM articles
-                                            WHERE sclass = '{self.sclass}'""").fetchone()[0]
-
-            con.close()
+            con.cursor().execute(f"""UPDATE articles 
+                                    SET is_read = 1 
+                                    WHERE id = {self.paragraph_id}""")
+            con.commit()
         elif self.markasread.text() == 'Параграф прочитан':
-            ## TODO ЗАПРОС В БД
+            con.cursor().execute(f"""UPDATE articles 
+                                                SET is_read = 0 
+                                                WHERE id = {self.paragraph_id}""")
+            con.commit()
             self.markasread.setText('Параграф не прочитан')
+        # Запросы на обновление процента выполнения по отдельному предмету
+        # Получаем количество помеченных параграфов. Далее делим это количество на число всех параграфов, далее умножаем на 100 и округляем до целого
+        percentage = round((con.cursor().execute(f""" SELECT count(*) FROM articles 
+                                                    WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchall()[0][
+                                0] / con.cursor().execute(
+            f""" SELECT count(*) FROM articles
+                                                    WHERE sclass = '{self.sclass}'""").fetchall()[0][0]) * 100)
+        print(percentage)
+        con.close()
 
     def open_study_window(self):
         self.second_form = StudyWindow(self.sclass)
