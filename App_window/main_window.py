@@ -94,16 +94,20 @@ class RegiseradminWindow(QDialog, Ui_RegWindow):
         con = sqlite3.connect('db_name.sqlite')
         check_name = con.cursor().execute(f""" SELECT id from users
                                                         WHERE username = '{self.login_input.text()}'""").fetchone()
-        if bool(check_name): # ошибка, если логин уже существует
+        if bool(check_name):  # ошибка, если логин уже существует
             self.error_label.setText('Такое имя уже существует')
             return
         # запись
-        con.cursor().execute(f"""INSERT INTO users(username, password, is_admin) VALUES('{self.login_input.text()}',
-                                                    '{sha256(self.password_input.text().encode('utf-8')).hexdigest()}',
-                                                    1)""")
+        progression = con.cursor().execute("""SELECT math_progression,phys_progression, 
+                                    bio_progression,chem_progression, overall_progression from users""").fetchone()
+
+        con.cursor().execute(f"""INSERT INTO users(username, password, is_admin, 
+        math_progression,phys_progression,bio_progression,chem_progression, overall_progression) 
+        VALUES('{self.login_input.text()}','{sha256(self.password_input.text().encode('utf-8')).hexdigest()}',
+        1,{progression[0]},{progression[1]},{progression[2]},{progression[3]},{progression[4]})""")
         con.commit()
         con.close()
-        self.second_form = LoginWindow() # Открытие окна логина
+        self.second_form = LoginWindow()  # Открытие окна логина
         self.second_form.show()
         self.close()
 
@@ -298,14 +302,13 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
                 worksheet.write(i + 1, j, value)
         # запрос на успеваемость
         table = con.cursor().execute("""SELECT math_progression,phys_progression, 
-                                    bio_progression,chem_progression, overall_progression from users """)
+                                    bio_progression,chem_progression, overall_progression from users """).fetchone()
         for i, value in enumerate(['math_progression', 'phys_progression', 'bio_progression',
                                    'chem_progression', 'overall_progression']):  # заголовки в верхних ячейках
-            worksheet.write(0, i + 3, value)
+            worksheet.write(0, i + 4, value)
         # запись процетов успеваемости
-        for i, row in enumerate(table):
-            for j, value in enumerate(row):
-                worksheet.write(i + 1, j + 3, value)
+        for i, value in enumerate(table):
+            worksheet.write(1, i + 4, value)
         workbook.close()
 
     def update_password(self):
