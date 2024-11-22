@@ -13,6 +13,7 @@ from ui.paragraph_pageUI import Ui_Form_Paragraph
 from ui.login_pageUI import Ui_LoginWindow
 from PyQt6 import QtCore, QtWidgets
 
+# Стандартный размер текста и словарь для облегчения работы с бд
 text_size = 17
 dict_of_sclass = {
     'Математика': 'math_progression',
@@ -34,7 +35,7 @@ class LoginWindow(QDialog, Ui_LoginWindow):
         self.loginadmin_button.clicked.connect(self.login_as_admin)
 
     def login_as_student(self):
-        self.second_form = Mainwindow(1)
+        self.second_form = Mainwindow(1, False)  # для входа ученику пароль не требуется
         self.second_form.show()
         self.close()
 
@@ -42,19 +43,20 @@ class LoginWindow(QDialog, Ui_LoginWindow):
         con = sqlite3.connect('db_name.sqlite')
         # Выполнение запроса и получение
         self.admin = con.cursor().execute(f""" SELECT id, password FROM users
-                                                                        WHERE is_admin = 1 AND username = '{self.login_input.text()}'""").fetchone()
+                                            WHERE is_admin = 1 AND username = '{self.login_input.text()}'""").fetchone()
         con.close()
         if not bool(self.admin):
+            self.error_label.setText('Неверный логин \nили пароль')  # сообщаем об ошибке если поля пустые
+            return
+        if not sha256(self.password_input.text().encode('utf-8')).hexdigest() == self.admin[
+            1]:  # сравнения шифра пароля с искомым паролем
             self.error_label.setText('Неверный логин \nили пароль')
             return
-        if not sha256(self.password_input.text().encode('utf-8')).hexdigest() == self.admin[1]:
-            self.error_label.setText('Неверный логин \nили пароль')
-            return
-        self.second_form = Mainwindow(self.admin[0])
+        self.second_form = Mainwindow(self.admin[0], True)
         self.second_form.show()
         self.close()
 
-    def change_visibility(self):
+    def change_visibility(self):  # функционал показа/скрытия пароля
         if self.password_input.echoMode() == QLineEdit.EchoMode.Password:
             self.password_button.setText('Скрыть пароль?')
             self.password_input.setEchoMode(QLineEdit.EchoMode.Normal)
@@ -64,14 +66,14 @@ class LoginWindow(QDialog, Ui_LoginWindow):
 
 
 class Mainwindow(QMainWindow, Ui_MainWindow):
-
-    # FIXME НЕТ ЗАПРОСОВ В БД
-
-    def __init__(self, id):
+    def __init__(self, id, is_admin):
         super().__init__()
         # Инициализация и обновление данных
         self.id = id
+        self.is_admin = is_admin
         self.setupUi(self)
+        if not self.is_admin:
+            self.admin_warning.hide()
         pixmap = QPixmap('logo_main.png')
         self.logo.setPixmap(pixmap)
         self.setWindowTitle('One-frog.Study')
@@ -107,9 +109,9 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 
     def open_service_window(self):
         if self.sender().text() == 'Мой аккаунт':
-            self.second_form = AccountWindow(self.id)
+            self.second_form = AccountWindow(self.id, self.is_admin)
         elif self.sender().text() == 'Настройки':
-            self.second_form = SettingsWindow(self.id)
+            self.second_form = SettingsWindow(self.id, self.is_admin)
         self.second_form.show()
         self.close()
 
@@ -134,6 +136,7 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 
     def send_article(self):
         con = sqlite3.connect('db_name.sqlite')
+        # FIXME НЕТ ЗАПРОСОВ В БД
         # Запись кастомной статьи в Бд
         con.cursor().execute(""" """).fetchall()
         con.commit()
@@ -141,9 +144,10 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
 
 
 class SettingsWindow(QMainWindow, Ui_Form_Settings):
-    def __init__(self, id, *args):
+    def __init__(self, id, is_admin, *args):
         super().__init__()
         self.id = id
+        self.is_admin = is_admin
         self.setupUi(self)
         pixmap = QPixmap('logo_main.png')
         self.logo.setPixmap(pixmap)
@@ -163,18 +167,22 @@ class SettingsWindow(QMainWindow, Ui_Form_Settings):
 
     def open_service_window(self):
         if self.sender().text() == 'Мой аккаунт':
-            self.second_form = AccountWindow(self.id)
+            self.second_form = AccountWindow(self.id, self.is_admin)
         elif self.sender().text() == 'Главная':
-            self.second_form = Mainwindow(self.id)
+            self.second_form = Mainwindow(self.id, self.is_admin)
         self.second_form.show()
         self.close()
 
 
 class AccountWindow(QMainWindow, Ui_AccountWindow):
-    def __init__(self, id, *args):
+    def __init__(self, id, is_admin, *args):
         super().__init__()
         self.id = id
+        self.is_admin = is_admin
         self.setupUi(self)
+        if not self.is_admin:
+            self.admin_frame.hide()
+            self.download_button.hide()
         self.get_account_info()
         self.progress_update()
         pixmap = QPixmap('logo_main.png')
@@ -183,7 +191,32 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
         self.setWindowIcon(QIcon('logo_favicon.png'))
         self.ToMain.clicked.connect(self.open_service_window)
         self.ToSettings.clicked.connect(self.open_service_window)
-        self.SaveButton.clicked.connect(self.update_account_info)
+        self.SaveButton_username.clicked.connect(self.update_account_info)
+        self.SaveButton_passwd.clicked.connect(self.update_password)
+        self.password_button.clicked.connect(self.change_visibility)
+
+    def update_password(self):
+        self.error_label.setText('')
+        if not (self.password_edit1.text() == self.password_edit2.text()):
+            self.error_label.setText('Пароли не \nсовпадают')
+            return
+        con = sqlite3.connect('db_name.sqlite')
+        con.cursor().execute(f"""UPDATE users
+                                 SET password = '{sha256(self.password_edit1.text().encode('utf-8')).hexdigest()}'
+                                 WHERE id = {self.id}""")
+        con.commit()
+        con.close()
+        self.success_label.setText('Успешно!')
+
+    def change_visibility(self):  # функционал показа/скрытия пароля
+        if self.password_edit1.echoMode() == QLineEdit.EchoMode.Password:
+            self.password_button.setText('Скрыть пароль?')
+            self.password_edit1.setEchoMode(QLineEdit.EchoMode.Normal)
+            self.password_edit2.setEchoMode(QLineEdit.EchoMode.Normal)
+        else:
+            self.password_button.setText('Показать пароль?')
+            self.password_edit1.setEchoMode(QLineEdit.EchoMode.Password)
+            self.password_edit2.setEchoMode(QLineEdit.EchoMode.Password)
 
     def get_account_info(self):
         con = sqlite3.connect('db_name.sqlite')
@@ -223,9 +256,9 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
 
     def open_service_window(self):
         if self.sender().text() == 'Настройки':
-            self.second_form = SettingsWindow(self.id)
+            self.second_form = SettingsWindow(self.id, self.is_admin)
         elif self.sender().text() == 'Главная':
-            self.second_form = Mainwindow(self.id)
+            self.second_form = Mainwindow(self.id, self.is_admin)
         self.second_form.show()
         self.close()
 
@@ -305,8 +338,8 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
             self.markasread.setText('Параграф прочитан')
 
             con.cursor().execute(f"""UPDATE articles 
-                                    SET is_read = 1 
-                                    WHERE id = {self.paragraph_id}""")
+                                     SET is_read = 1 
+                                     WHERE id = {self.paragraph_id}""")
             con.commit()
         elif self.markasread.text() == 'Параграф прочитан':
             con.cursor().execute(f"""UPDATE articles 
@@ -316,30 +349,27 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
             self.markasread.setText('Параграф не прочитан')
 
         # Запросы на обновление процента выполнения по отдельному предмету
-        # Получаем количество помеченных параграфов. Далее делим это количество на число всех параграфов, далее умножаем на 100 и округляем до целого
+        # Получаем количество помеченных параграфов. Далее делим это количество на число всех параграфов, далее умножаем
+        # на 100 и округляем до целого
         sclass_read = con.cursor().execute(f""" SELECT count(*) FROM articles 
-                                                WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchall()[0][0] # запрос вернет int
+                                                WHERE sclass = '{self.sclass}' and  is_read = 1""").fetchall()[0][0]
         sclass_all = con.cursor().execute(f""" SELECT count(*) FROM articles
-                                            WHERE sclass = '{self.sclass}'""").fetchall()[0][0] # запрос вернет int
+                                               WHERE sclass = '{self.sclass}'""").fetchall()[0][0]
         percentage_of_sclass = round(sclass_read / sclass_all * 100)
         # Запросы на обновление процента выполнения по всем предметам
         # Аналогично
         overall_read = con.cursor().execute(f""" SELECT count(*) FROM articles 
-                                                 WHERE is_read = 1""").fetchall()[0][0]  # запрос вернет int
-        overall_all = con.cursor().execute(f""" SELECT count(*) FROM articles""").fetchall()[0][0]  # запрос вернет int
+                                                 WHERE is_read = 1""").fetchall()[0][0]
+        overall_all = con.cursor().execute(f""" SELECT count(*) FROM articles""").fetchall()[0][0]  # запросы вернут int
         percentage_overall = round(overall_read / overall_all * 100)
 
-
-        #Обновление данных
+        # Обновление данных
         con.execute(f"""UPDATE users 
-                        SET {dict_of_sclass[self.sclass]} = {percentage_of_sclass}
-                        WHERE id = {self.id}""")
+                        SET {dict_of_sclass[self.sclass]} = {percentage_of_sclass}""")
         con.execute(f"""UPDATE users 
-                        SET overall_progression = {percentage_overall}
-                        WHERE id = {self.id}""")
+                        SET overall_progression = {percentage_overall}""")
         con.commit()
         con.close()
-
 
     def open_study_window(self):
         self.second_form = StudyWindow(self.sclass, self.id)

@@ -331,10 +331,29 @@ background-color :rgb(128, 149, 184);}</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font-size:16px;
+text-decoration:underline;
 color:rgb(153, 164, 208);</string>
        </property>
        <property name="text">
         <string>Обновить данные</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="admin_warning">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>750</y>
+         <width>341</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size:16px;
+color:rgb(153, 164, 208);</string>
+       </property>
+       <property name="text">
+        <string>*Вы вошли как админ. 
+ В полях отображается успеваемость ученика</string>
        </property>
       </widget>
       <zorder>label</zorder>
@@ -347,6 +366,7 @@ color:rgb(153, 164, 208);</string>
       <zorder>phys_progression</zorder>
       <zorder>bio_progression</zorder>
       <zorder>update_progress</zorder>
+      <zorder>admin_warning</zorder>
      </widget>
     </item>
     <item>

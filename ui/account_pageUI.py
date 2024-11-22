@@ -80,16 +80,16 @@ class Ui_AccountWindow(object):
 "text-align:left;\n"
 "")
         self.label.setObjectName("label")
-        self.SaveButton = QtWidgets.QPushButton(parent=self.frame_2)
-        self.SaveButton.setGeometry(QtCore.QRect(170, 410, 231, 61))
-        self.SaveButton.setStyleSheet("background-color:rgb(110, 127, 158);\n"
+        self.SaveButton_username = QtWidgets.QPushButton(parent=self.frame_2)
+        self.SaveButton_username.setGeometry(QtCore.QRect(200, 370, 201, 41))
+        self.SaveButton_username.setStyleSheet("background-color:rgb(110, 127, 158);\n"
 "word-break:break-word;\n"
 "color:white;\n"
 "border-radius:10px;\n"
-"font-size:27px;\n"
+"font-size:25px;\n"
 "padding-left:4%;\n"
 "text-align:center;")
-        self.SaveButton.setObjectName("SaveButton")
+        self.SaveButton_username.setObjectName("SaveButton_username")
         self.NicknameEdit = QtWidgets.QLineEdit(parent=self.frame_2)
         self.NicknameEdit.setGeometry(QtCore.QRect(90, 190, 311, 31))
         self.NicknameEdit.setStyleSheet("background:rgb(132, 153, 189);\n"
@@ -125,7 +125,7 @@ class Ui_AccountWindow(object):
         self.favoriteClass.addItem("")
         self.favoriteClass.addItem("")
         self.label_10 = QtWidgets.QLabel(parent=self.frame_2)
-        self.label_10.setGeometry(QtCore.QRect(90, 240, 271, 41))
+        self.label_10.setGeometry(QtCore.QRect(80, 240, 271, 41))
         self.label_10.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:30px;\n"
@@ -139,6 +139,72 @@ class Ui_AccountWindow(object):
 "color:rgb(153, 164, 208);")
         self.favoriteLabel.setText("")
         self.favoriteLabel.setObjectName("favoriteLabel")
+        self.admin_frame = QtWidgets.QFrame(parent=self.frame_2)
+        self.admin_frame.setGeometry(QtCore.QRect(20, 420, 381, 361))
+        self.admin_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.admin_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.admin_frame.setObjectName("admin_frame")
+        self.error_label = QtWidgets.QLabel(parent=self.admin_frame)
+        self.error_label.setGeometry(QtCore.QRect(70, 170, 111, 51))
+        self.error_label.setStyleSheet("color:orange;\n"
+"font-size:19px;\n"
+"text-align: justify;\n"
+"justify-content: center;")
+        self.error_label.setText("")
+        self.error_label.setObjectName("error_label")
+        self.label_9 = QtWidgets.QLabel(parent=self.admin_frame)
+        self.label_9.setGeometry(QtCore.QRect(60, 10, 241, 41))
+        self.label_9.setStyleSheet("background:transparent;\n"
+"color:white;\n"
+"font-size:30px;\n"
+"padding-left:4%;\n"
+"text-align:left;\n"
+"")
+        self.label_9.setObjectName("label_9")
+        self.password_edit1 = QtWidgets.QLineEdit(parent=self.admin_frame)
+        self.password_edit1.setGeometry(QtCore.QRect(70, 70, 311, 31))
+        self.password_edit1.setStyleSheet("background:rgb(132, 153, 189);\n"
+"color:white;\n"
+"font-size:18px;")
+        self.password_edit1.setObjectName("password_edit1")
+        self.SaveButton_passwd = QtWidgets.QPushButton(parent=self.admin_frame)
+        self.SaveButton_passwd.setGeometry(QtCore.QRect(190, 230, 191, 41))
+        self.SaveButton_passwd.setStyleSheet("background-color:rgb(110, 127, 158);\n"
+"word-break:break-word;\n"
+"color:white;\n"
+"border-radius:10px;\n"
+"font-size:25px;\n"
+"padding-left:4%;\n"
+"text-align:center;")
+        self.SaveButton_passwd.setObjectName("SaveButton_passwd")
+        self.password_edit2 = QtWidgets.QLineEdit(parent=self.admin_frame)
+        self.password_edit2.setGeometry(QtCore.QRect(70, 120, 311, 31))
+        self.password_edit2.setStyleSheet("background:rgb(132, 153, 189);\n"
+"color:white;\n"
+"font-size:18px;")
+        self.password_edit2.setObjectName("password_edit2")
+        self.password_button = QtWidgets.QPushButton(parent=self.admin_frame)
+        self.password_button.setGeometry(QtCore.QRect(220, 160, 171, 28))
+        self.password_button.setStyleSheet("color:rgb(188, 211, 241);\n"
+"word-break:break-word;\n"
+"border-radius:5px;\n"
+"font-size:18px;\n"
+"padding-left:4%;\n"
+"text-align:center;")
+        self.password_button.setObjectName("password_button")
+        self.admin_warning = QtWidgets.QLabel(parent=self.admin_frame)
+        self.admin_warning.setGeometry(QtCore.QRect(30, 320, 341, 41))
+        self.admin_warning.setStyleSheet("font-size:16px;\n"
+"color:rgb(153, 164, 208);")
+        self.admin_warning.setObjectName("admin_warning")
+        self.success_label = QtWidgets.QLabel(parent=self.admin_frame)
+        self.success_label.setGeometry(QtCore.QRect(80, 230, 101, 31))
+        self.success_label.setStyleSheet("color:rgb(145, 255, 143);\n"
+"font-size:19px;\n"
+"text-align: justify;\n"
+"justify-content: center;")
+        self.success_label.setText("")
+        self.success_label.setObjectName("success_label")
         self.horizontalLayout.addWidget(self.frame_2)
         self.frame_3 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_3.setMinimumSize(QtCore.QSize(500, 800))
@@ -157,7 +223,7 @@ class Ui_AccountWindow(object):
 "")
         self.label_3.setObjectName("label_3")
         self.overalllprogression = QtWidgets.QProgressBar(parent=self.frame_3)
-        self.overalllprogression.setGeometry(QtCore.QRect(310, 670, 171, 31))
+        self.overalllprogression.setGeometry(QtCore.QRect(310, 620, 171, 31))
         self.overalllprogression.setStyleSheet("color:white;")
         self.overalllprogression.setProperty("value", 24)
         self.overalllprogression.setObjectName("overalllprogression")
@@ -218,7 +284,7 @@ class Ui_AccountWindow(object):
 "")
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_7.setGeometry(QtCore.QRect(20, 650, 151, 51))
+        self.label_7.setGeometry(QtCore.QRect(20, 600, 151, 51))
         self.label_7.setStyleSheet("background:transparent;\n"
 "color:white;\n"
 "font-size:29px;\n"
@@ -226,6 +292,16 @@ class Ui_AccountWindow(object):
 "text-align:left;\n"
 "")
         self.label_7.setObjectName("label_7")
+        self.download_button = QtWidgets.QPushButton(parent=self.frame_3)
+        self.download_button.setGeometry(QtCore.QRect(280, 730, 191, 51))
+        self.download_button.setStyleSheet("background-color:rgb(110, 127, 158);\n"
+"word-break:break-word;\n"
+"color:white;\n"
+"border-radius:10px;\n"
+"font-size:18px;\n"
+"padding-left:4%;\n"
+"text-align:center;")
+        self.download_button.setObjectName("download_button")
         self.horizontalLayout.addWidget(self.frame_3)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -239,7 +315,7 @@ class Ui_AccountWindow(object):
         self.ToAccount.setText(_translate("MainWindow", "Мой аккаунт"))
         self.ToSettings.setText(_translate("MainWindow", "Настройки"))
         self.label.setText(_translate("MainWindow", "Информация об аккаунте"))
-        self.SaveButton.setText(_translate("MainWindow", "Сохранить!"))
+        self.SaveButton_username.setText(_translate("MainWindow", "Сохранить!"))
         self.label_8.setText(_translate("MainWindow", "Никнейм"))
         self.favoriteClass.setItemText(0, _translate("MainWindow", "-"))
         self.favoriteClass.setItemText(1, _translate("MainWindow", "Математика"))
@@ -247,9 +323,16 @@ class Ui_AccountWindow(object):
         self.favoriteClass.setItemText(3, _translate("MainWindow", "Химия"))
         self.favoriteClass.setItemText(4, _translate("MainWindow", "Биология"))
         self.label_10.setText(_translate("MainWindow", "Любимый предмет"))
+        self.label_9.setText(_translate("MainWindow", "Смена пароля"))
+        self.SaveButton_passwd.setText(_translate("MainWindow", "Изменить"))
+        self.password_button.setText(_translate("MainWindow", "Скрыть пароль?"))
+        self.admin_warning.setText(_translate("MainWindow", "*Вы вошли как админ. \n"
+" В полях отображается успеваемость ученика"))
         self.label_3.setText(_translate("MainWindow", "Информация об успеваемости"))
         self.label_2.setText(_translate("MainWindow", "Математика"))
         self.label_4.setText(_translate("MainWindow", "Физика"))
         self.label_5.setText(_translate("MainWindow", "Биология"))
         self.label_6.setText(_translate("MainWindow", "Химия"))
         self.label_7.setText(_translate("MainWindow", "Общий"))
+        self.download_button.setText(_translate("MainWindow", "Скачать данные\n"
+"об успеваемости"))

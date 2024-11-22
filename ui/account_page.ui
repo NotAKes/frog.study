@@ -153,13 +153,13 @@ text-align:left;
         <string>Информация об аккаунте</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="SaveButton">
+      <widget class="QPushButton" name="SaveButton_username">
        <property name="geometry">
         <rect>
-         <x>170</x>
-         <y>410</y>
-         <width>231</width>
-         <height>61</height>
+         <x>200</x>
+         <y>370</y>
+         <width>201</width>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -167,7 +167,7 @@ text-align:left;
 word-break:break-word;
 color:white;
 border-radius:10px;
-font-size:27px;
+font-size:25px;
 padding-left:4%;
 text-align:center;</string>
        </property>
@@ -262,7 +262,7 @@ background: rgb(110, 127, 158);
       <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>80</x>
          <y>240</y>
          <width>271</width>
          <height>41</height>
@@ -296,6 +296,172 @@ color:rgb(153, 164, 208);</string>
        <property name="text">
         <string/>
        </property>
+      </widget>
+      <widget class="QFrame" name="admin_frame">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>420</y>
+         <width>381</width>
+         <height>361</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="error_label">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>170</y>
+          <width>111</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:orange;
+font-size:19px;
+text-align: justify;
+justify-content: center;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>10</y>
+          <width>241</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:transparent;
+color:white;
+font-size:30px;
+padding-left:4%;
+text-align:left;
+</string>
+        </property>
+        <property name="text">
+         <string>Смена пароля</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="password_edit1">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>70</y>
+          <width>311</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:rgb(132, 153, 189);
+color:white;
+font-size:18px;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="SaveButton_passwd">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>230</y>
+          <width>191</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(110, 127, 158);
+word-break:break-word;
+color:white;
+border-radius:10px;
+font-size:25px;
+padding-left:4%;
+text-align:center;</string>
+        </property>
+        <property name="text">
+         <string>Изменить</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="password_edit2">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>120</y>
+          <width>311</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:rgb(132, 153, 189);
+color:white;
+font-size:18px;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="password_button">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>160</y>
+          <width>171</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:rgb(188, 211, 241);
+word-break:break-word;
+border-radius:5px;
+font-size:18px;
+padding-left:4%;
+text-align:center;</string>
+        </property>
+        <property name="text">
+         <string>Скрыть пароль?</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="admin_warning">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>320</y>
+          <width>341</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;
+color:rgb(153, 164, 208);</string>
+        </property>
+        <property name="text">
+         <string>*Вы вошли как админ. 
+ В полях отображается успеваемость ученика</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="success_label">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>230</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:rgb(145, 255, 143);
+font-size:19px;
+text-align: justify;
+justify-content: center;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -347,7 +513,7 @@ text-align:left;
        <property name="geometry">
         <rect>
          <x>310</x>
-         <y>670</y>
+         <y>620</y>
          <width>171</width>
          <height>31</height>
         </rect>
@@ -511,7 +677,7 @@ text-align:left;
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>650</y>
+         <y>600</y>
          <width>151</width>
          <height>51</height>
         </rect>
@@ -526,6 +692,29 @@ text-align:left;
        </property>
        <property name="text">
         <string>Общий</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="download_button">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>730</y>
+         <width>191</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(110, 127, 158);
+word-break:break-word;
+color:white;
+border-radius:10px;
+font-size:18px;
+padding-left:4%;
+text-align:center;</string>
+       </property>
+       <property name="text">
+        <string>Скачать данные
+об успеваемости</string>
        </property>
       </widget>
      </widget>
