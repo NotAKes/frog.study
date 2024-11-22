@@ -6,13 +6,13 @@ from PyQt6.QtGui import QIcon, QFont, QPixmap
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QWidget, QVBoxLayout, QDialog, \
     QLineEdit
-from ui.settings_pageUI import Ui_Form_Settings
-from ui.main_pageUI import Ui_MainWindow
-from ui.account_pageUI import Ui_AccountWindow
-from ui.study_pageUI import Ui_Form_Study
-from ui.paragraph_pageUI import Ui_Form_Paragraph
-from ui.login_pageUI import Ui_LoginWindow
-from ui.reg_pageUI import Ui_RegWindow
+from settings_pageUI import Ui_Form_Settings
+from main_pageUI import Ui_MainWindow
+from account_pageUI import Ui_AccountWindow
+from study_pageUI import Ui_Form_Study
+from paragraph_pageUI import Ui_Form_Paragraph
+from login_pageUI import Ui_LoginWindow
+from reg_pageUI import Ui_RegWindow
 from PyQt6 import QtCore, QtWidgets
 
 # Стандартный размер текста и словарь для облегчения работы с бд
@@ -100,7 +100,7 @@ class RegiseradminWindow(QDialog, Ui_RegWindow):
         # запись
         progression = con.cursor().execute("""SELECT math_progression,phys_progression, 
                                     bio_progression,chem_progression, overall_progression from users""").fetchone()
-
+        # запрос с записью всего в поля нового админа
         con.cursor().execute(f"""INSERT INTO users(username, password, is_admin, 
         math_progression,phys_progression,bio_progression,chem_progression, overall_progression) 
         VALUES('{self.login_input.text()}','{sha256(self.password_input.text().encode('utf-8')).hexdigest()}',
