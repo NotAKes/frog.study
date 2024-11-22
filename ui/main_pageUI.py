@@ -149,9 +149,10 @@ class Ui_MainWindow(object):
         self.bio_progression.setObjectName("bio_progression")
         self.update_progress = QtWidgets.QPushButton(parent=self.frame_2)
         self.update_progress.setGeometry(QtCore.QRect(344, 620, 141, 51))
-        self.update_progress.setStyleSheet("font-size:16px;\n"
+        self.update_progress.setStyleSheet("QPushButton{font-size:16px;\n"
 "text-decoration:underline;\n"
-"color:rgb(153, 164, 208);")
+"color:rgb(153, 164, 208);}\n"
+"QPushButton::hover{color:rgb(167, 179, 226)}")
         self.update_progress.setObjectName("update_progress")
         self.admin_warning = QtWidgets.QLabel(parent=self.frame_2)
         self.admin_warning.setGeometry(QtCore.QRect(60, 750, 341, 51))
@@ -183,7 +184,7 @@ class Ui_MainWindow(object):
 "color:white;")
         self.label_2.setObjectName("label_2")
         self.confirm_send = QtWidgets.QPushButton(parent=self.frame_3)
-        self.confirm_send.setGeometry(QtCore.QRect(280, 720, 191, 51))
+        self.confirm_send.setGeometry(QtCore.QRect(300, 720, 191, 51))
         self.confirm_send.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:25px;\n"
@@ -194,7 +195,7 @@ class Ui_MainWindow(object):
 "background-color :rgb(128, 149, 184);}")
         self.confirm_send.setObjectName("confirm_send")
         self.send_button = QtWidgets.QPushButton(parent=self.frame_3)
-        self.send_button.setGeometry(QtCore.QRect(60, 210, 411, 41))
+        self.send_button.setGeometry(QtCore.QRect(80, 210, 411, 41))
         self.send_button.setStyleSheet("QPushButton{background-color :rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:25px;\n"
@@ -205,7 +206,7 @@ class Ui_MainWindow(object):
 "background-color :rgb(128, 149, 184);}")
         self.send_button.setObjectName("send_button")
         self.label_3 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_3.setGeometry(QtCore.QRect(210, 260, 101, 31))
+        self.label_3.setGeometry(QtCore.QRect(230, 260, 101, 31))
         self.label_3.setStyleSheet("QLabel{\n"
 "color:white;\n"
 "font-size:25px;\n"
@@ -214,35 +215,51 @@ class Ui_MainWindow(object):
 "border-radius: 10px;}")
         self.label_3.setObjectName("label_3")
         self.senders_text = QtWidgets.QTextEdit(parent=self.frame_3)
-        self.senders_text.setGeometry(QtCore.QRect(60, 300, 411, 301))
+        self.senders_text.setGeometry(QtCore.QRect(80, 300, 411, 301))
         self.senders_text.setStyleSheet("color:white;\n"
 "font-size:25px;\n"
 "background:rgb(117, 126, 168);\n"
 "border: 2px solid rgb(52, 56, 75);")
         self.senders_text.setObjectName("senders_text")
-        self.comboBox = QtWidgets.QComboBox(parent=self.frame_3)
-        self.comboBox.setGeometry(QtCore.QRect(280, 630, 191, 51))
-        self.comboBox.setStyleSheet("background-color: rgb(110, 127, 158);\n"
+        self.sclass_pick = QtWidgets.QComboBox(parent=self.frame_3)
+        self.sclass_pick.setGeometry(QtCore.QRect(300, 630, 191, 51))
+        self.sclass_pick.setStyleSheet("background-color: rgb(110, 127, 158);\n"
 "color:white;\n"
 "font-size:20px;\n"
 "border-radius: 10px")
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
+        self.sclass_pick.setObjectName("sclass_pick")
+        self.sclass_pick.addItem("")
+        self.sclass_pick.addItem("")
+        self.sclass_pick.addItem("")
+        self.sclass_pick.addItem("")
         self.label_4 = QtWidgets.QLabel(parent=self.frame_3)
-        self.label_4.setGeometry(QtCore.QRect(70, 630, 211, 51))
+        self.label_4.setGeometry(QtCore.QRect(60, 620, 211, 51))
         self.label_4.setStyleSheet("font-size:22px;\n"
 "color:white;")
         self.label_4.setObjectName("label_4")
         self.title_edit = QtWidgets.QLineEdit(parent=self.frame_3)
-        self.title_edit.setGeometry(QtCore.QRect(60, 150, 411, 41))
+        self.title_edit.setGeometry(QtCore.QRect(80, 150, 411, 41))
         self.title_edit.setStyleSheet("color:white;\n"
 "font-size:25px;\n"
 "background:rgb(117, 126, 168);\n"
 "border: 2px solid rgb(52, 56, 75);")
         self.title_edit.setObjectName("title_edit")
+        self.success_label = QtWidgets.QLabel(parent=self.frame_3)
+        self.success_label.setGeometry(QtCore.QRect(60, 720, 231, 71))
+        self.success_label.setStyleSheet("color:rgb(145, 255, 143);\n"
+"font-size:16px;\n"
+"text-align: justify;\n"
+"justify-content: center;")
+        self.success_label.setText("")
+        self.success_label.setObjectName("success_label")
+        self.error_label = QtWidgets.QLabel(parent=self.frame_3)
+        self.error_label.setGeometry(QtCore.QRect(60, 670, 181, 51))
+        self.error_label.setStyleSheet("color:orange;\n"
+"font-size:19px;\n"
+"text-align: justify;\n"
+"justify-content: center;")
+        self.error_label.setText("")
+        self.error_label.setObjectName("error_label")
         self.horizontalLayout.addWidget(self.frame_3)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -272,8 +289,8 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:25px; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.comboBox.setItemText(0, _translate("MainWindow", "Математика"))
-        self.comboBox.setItemText(1, _translate("MainWindow", "Физика"))
-        self.comboBox.setItemText(2, _translate("MainWindow", "Биология"))
-        self.comboBox.setItemText(3, _translate("MainWindow", "Химия"))
+        self.sclass_pick.setItemText(0, _translate("MainWindow", "Математика"))
+        self.sclass_pick.setItemText(1, _translate("MainWindow", "Физика"))
+        self.sclass_pick.setItemText(2, _translate("MainWindow", "Биология"))
+        self.sclass_pick.setItemText(3, _translate("MainWindow", "Химия"))
         self.label_4.setText(_translate("MainWindow", "Выберите область:"))
