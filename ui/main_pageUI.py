@@ -147,6 +147,17 @@ class Ui_MainWindow(object):
         self.bio_progression.setStyleSheet("color:white;")
         self.bio_progression.setProperty("value", 10)
         self.bio_progression.setObjectName("bio_progression")
+        self.update_progress = QtWidgets.QPushButton(parent=self.frame_2)
+        self.update_progress.setGeometry(QtCore.QRect(344, 620, 141, 51))
+        self.update_progress.setStyleSheet("font-size:16px;\n"
+"text-decoration:underline;\n"
+"color:rgb(153, 164, 208);")
+        self.update_progress.setObjectName("update_progress")
+        self.admin_warning = QtWidgets.QLabel(parent=self.frame_2)
+        self.admin_warning.setGeometry(QtCore.QRect(60, 750, 341, 51))
+        self.admin_warning.setStyleSheet("font-size:16px;\n"
+"color:rgb(153, 164, 208);")
+        self.admin_warning.setObjectName("admin_warning")
         self.label.raise_()
         self.chem_button.raise_()
         self.math_button.raise_()
@@ -156,6 +167,8 @@ class Ui_MainWindow(object):
         self.chem_progression.raise_()
         self.phys_progression.raise_()
         self.bio_progression.raise_()
+        self.update_progress.raise_()
+        self.admin_warning.raise_()
         self.horizontalLayout.addWidget(self.frame_2)
         self.frame_3 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_3.setMinimumSize(QtCore.QSize(500, 800))
@@ -247,6 +260,9 @@ class Ui_MainWindow(object):
         self.chem_button.setText(_translate("MainWindow", "Химия"))
         self.phys_button.setText(_translate("MainWindow", "Физика"))
         self.bio_button.setText(_translate("MainWindow", "Биология"))
+        self.update_progress.setText(_translate("MainWindow", "Обновить данные"))
+        self.admin_warning.setText(_translate("MainWindow", "*Вы вошли как админ. \n"
+" В полях отображается успеваемость ученика"))
         self.label_2.setText(_translate("MainWindow", "Отправить статью"))
         self.confirm_send.setText(_translate("MainWindow", "Отправить!"))
         self.send_button.setText(_translate("MainWindow", "Загрузить файл"))
