@@ -96,6 +96,18 @@ class Ui_Form_Settings(object):
         self.textBrowser.setStyleSheet("color:white;\n"
 "font-size:20px;")
         self.textBrowser.setObjectName("textBrowser")
+        self.login_again = QtWidgets.QPushButton(parent=self.frame_3)
+        self.login_again.setGeometry(QtCore.QRect(310, 680, 291, 41))
+        self.login_again.setStyleSheet("color:rgb(132, 153, 189);\n"
+"font-size:23px;\n"
+"text-align:left;")
+        self.login_again.setObjectName("login_again")
+        self.nickname = QtWidgets.QLabel(parent=self.frame_3)
+        self.nickname.setGeometry(QtCore.QRect(310, 630, 291, 41))
+        self.nickname.setStyleSheet("color:rgb(132, 153, 189);\n"
+"font-size:23px;")
+        self.nickname.setText("")
+        self.nickname.setObjectName("nickname")
         self.horizontalLayout.addWidget(self.frame_3)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -120,3 +132,4 @@ class Ui_Form_Settings(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://github.com/NotAKes/frog.study/issues\"><span style=\" font-size:18pt; text-decoration: underline; color:#8499bd;\">Нашли ошибку?</span></a></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; text-decoration: underline; color:#8499bd;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20px; color:#8499bd;\">v0.34 @notakes</span></p></body></html>"))
+        self.login_again.setText(_translate("MainWindow", "Войти в другой аккаунт?"))

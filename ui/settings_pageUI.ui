@@ -211,6 +211,41 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20px; color:#8499bd;&quot;&gt;v0.34 @notakes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="login_again">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>680</y>
+         <width>291</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(132, 153, 189);
+font-size:23px;
+text-align:left;</string>
+       </property>
+       <property name="text">
+        <string>Войти в другой аккаунт?</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="nickname">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>630</y>
+         <width>291</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(132, 153, 189);
+font-size:23px;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>

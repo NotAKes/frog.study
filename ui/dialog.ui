@@ -147,7 +147,7 @@ justify-content: center;</string>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>320</x>
      <y>260</y>
      <width>41</width>
      <height>21</height>

@@ -66,7 +66,7 @@ class Ui_LoginWindow(object):
         self.error_label.setText("")
         self.error_label.setObjectName("error_label")
         self.label_4 = QtWidgets.QLabel(parent=Dialog)
-        self.label_4.setGeometry(QtCore.QRect(330, 260, 41, 21))
+        self.label_4.setGeometry(QtCore.QRect(320, 260, 41, 21))
         self.label_4.setStyleSheet("color:white;\n"
 "font-size:18px;")
         self.label_4.setObjectName("label_4")

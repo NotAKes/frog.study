@@ -330,9 +330,10 @@ background-color :rgb(128, 149, 184);}</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font-size:16px;
+        <string notr="true">QPushButton{font-size:16px;
 text-decoration:underline;
-color:rgb(153, 164, 208);</string>
+color:rgb(153, 164, 208);}
+QPushButton::hover{color:rgb(167, 179, 226)}</string>
        </property>
        <property name="text">
         <string>Обновить данные</string>
@@ -412,7 +413,7 @@ color:white;</string>
       <widget class="QPushButton" name="confirm_send">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>300</x>
          <y>720</y>
          <width>191</width>
          <height>51</height>
@@ -435,7 +436,7 @@ background-color :rgb(128, 149, 184);}</string>
       <widget class="QPushButton" name="send_button">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>80</x>
          <y>210</y>
          <width>411</width>
          <height>41</height>
@@ -458,7 +459,7 @@ background-color :rgb(128, 149, 184);}</string>
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
-         <x>210</x>
+         <x>230</x>
          <y>260</y>
          <width>101</width>
          <height>31</height>
@@ -479,7 +480,7 @@ border-radius: 10px;}</string>
       <widget class="QTextEdit" name="senders_text">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>80</x>
          <y>300</y>
          <width>411</width>
          <height>301</height>
@@ -499,10 +500,10 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="sclass_pick">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>300</x>
          <y>630</y>
          <width>191</width>
          <height>51</height>
@@ -538,8 +539,8 @@ border-radius: 10px</string>
       <widget class="QLabel" name="label_4">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>630</y>
+         <x>60</x>
+         <y>620</y>
          <width>211</width>
          <height>51</height>
         </rect>
@@ -555,7 +556,7 @@ color:white;</string>
       <widget class="QLineEdit" name="title_edit">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>80</x>
          <y>150</y>
          <width>411</width>
          <height>41</height>
@@ -566,6 +567,44 @@ color:white;</string>
 font-size:25px;
 background:rgb(117, 126, 168);
 border: 2px solid rgb(52, 56, 75);</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="success_label">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>720</y>
+         <width>231</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(145, 255, 143);
+font-size:16px;
+text-align: justify;
+justify-content: center;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="error_label">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>670</y>
+         <width>181</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:orange;
+font-size:19px;
+text-align: justify;
+justify-content: center;</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
