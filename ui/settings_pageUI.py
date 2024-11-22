@@ -43,6 +43,9 @@ class Ui_Form_Settings(object):
 "text-align:left;\n"
 "")
         self.ToMain.setObjectName("ToMain")
+        self.change_window = QtWidgets.QButtonGroup(MainWindow)
+        self.change_window.setObjectName("change_window")
+        self.change_window.addButton(self.ToMain)
         self.verticalLayout.addWidget(self.ToMain)
         self.ToAccount = QtWidgets.QPushButton(parent=self.frame)
         self.ToAccount.setStyleSheet("background:transparent;\n"
@@ -52,6 +55,7 @@ class Ui_Form_Settings(object):
 "padding-left:4%;\n"
 "text-align:left;")
         self.ToAccount.setObjectName("ToAccount")
+        self.change_window.addButton(self.ToAccount)
         self.verticalLayout.addWidget(self.ToAccount)
         self.ToSettings = QtWidgets.QPushButton(parent=self.frame)
         self.ToSettings.setStyleSheet("background:transparent;\n"
@@ -62,6 +66,7 @@ class Ui_Form_Settings(object):
 "text-align:left;\n"
 "text-decoration:underline;")
         self.ToSettings.setObjectName("ToSettings")
+        self.change_window.addButton(self.ToSettings)
         self.verticalLayout.addWidget(self.ToSettings)
         self.horizontalLayout.addWidget(self.frame, 0, QtCore.Qt.AlignmentFlag.AlignTop)
         self.frame_3 = QtWidgets.QFrame(parent=self.centralwidget)
@@ -97,17 +102,25 @@ class Ui_Form_Settings(object):
 "font-size:20px;")
         self.textBrowser.setObjectName("textBrowser")
         self.login_again = QtWidgets.QPushButton(parent=self.frame_3)
-        self.login_again.setGeometry(QtCore.QRect(310, 680, 291, 41))
+        self.login_again.setGeometry(QtCore.QRect(260, 680, 291, 41))
         self.login_again.setStyleSheet("color:rgb(132, 153, 189);\n"
 "font-size:23px;\n"
 "text-align:left;")
         self.login_again.setObjectName("login_again")
+        self.change_window.addButton(self.login_again)
         self.nickname = QtWidgets.QLabel(parent=self.frame_3)
-        self.nickname.setGeometry(QtCore.QRect(310, 630, 291, 41))
+        self.nickname.setGeometry(QtCore.QRect(260, 630, 291, 41))
         self.nickname.setStyleSheet("color:rgb(132, 153, 189);\n"
 "font-size:23px;")
         self.nickname.setText("")
         self.nickname.setObjectName("nickname")
+        self.reg_admin_btn = QtWidgets.QPushButton(parent=self.frame_3)
+        self.reg_admin_btn.setGeometry(QtCore.QRect(260, 730, 301, 41))
+        self.reg_admin_btn.setStyleSheet("color:rgb(132, 153, 189);\n"
+"font-size:23px;\n"
+"text-align:left;")
+        self.reg_admin_btn.setObjectName("reg_admin_btn")
+        self.change_window.addButton(self.reg_admin_btn)
         self.horizontalLayout.addWidget(self.frame_3)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -133,3 +146,4 @@ class Ui_Form_Settings(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; text-decoration: underline; color:#8499bd;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20px; color:#8499bd;\">v0.34 @notakes</span></p></body></html>"))
         self.login_again.setText(_translate("MainWindow", "Войти в другой аккаунт?"))
+        self.reg_admin_btn.setText(_translate("MainWindow", "Создать админский аккаунт"))

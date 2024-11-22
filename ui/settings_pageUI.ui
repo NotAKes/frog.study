@@ -73,6 +73,9 @@ text-align:left;
          <property name="text">
           <string>Главная</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">change_window</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -88,6 +91,9 @@ text-align:left;</string>
          <property name="text">
           <string>Мой аккаунт</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">change_window</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -104,6 +110,9 @@ text-decoration:underline;</string>
          <property name="text">
           <string>Настройки</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">change_window</string>
+         </attribute>
         </widget>
        </item>
       </layout>
@@ -214,7 +223,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QPushButton" name="login_again">
        <property name="geometry">
         <rect>
-         <x>310</x>
+         <x>260</x>
          <y>680</y>
          <width>291</width>
          <height>41</height>
@@ -228,11 +237,14 @@ text-align:left;</string>
        <property name="text">
         <string>Войти в другой аккаунт?</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">change_window</string>
+       </attribute>
       </widget>
       <widget class="QLabel" name="nickname">
        <property name="geometry">
         <rect>
-         <x>310</x>
+         <x>260</x>
          <y>630</y>
          <width>291</width>
          <height>41</height>
@@ -246,6 +258,27 @@ font-size:23px;</string>
         <string/>
        </property>
       </widget>
+      <widget class="QPushButton" name="reg_admin_btn">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>730</y>
+         <width>301</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(132, 153, 189);
+font-size:23px;
+text-align:left;</string>
+       </property>
+       <property name="text">
+        <string>Создать админский аккаунт</string>
+       </property>
+       <attribute name="buttonGroup">
+        <string notr="true">change_window</string>
+       </attribute>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -253,4 +286,7 @@ font-size:23px;</string>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="change_window"/>
+ </buttongroups>
 </ui>
