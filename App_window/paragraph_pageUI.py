@@ -54,7 +54,8 @@ class Ui_Form_Paragraph(object):
         self.verticalLayout.addWidget(self.title_frame)
         self.paragraph = QtWidgets.QTextBrowser(parent=Form)
         self.paragraph.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.paragraph.setStyleSheet("border-top:1px solid rgb(231, 251, 255);")
+        self.paragraph.setStyleSheet("border-top:1px solid rgb(231, 251, 255);\n"
+"color:white;")
         self.paragraph.setObjectName("paragraph")
         self.verticalLayout.addWidget(self.paragraph)
 

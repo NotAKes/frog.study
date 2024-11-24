@@ -717,6 +717,25 @@ text-align:center;</string>
 об успеваемости</string>
        </property>
       </widget>
+      <widget class="QLabel" name="success_label_exel">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>730</y>
+         <width>101</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(145, 255, 143);
+font-size:19px;
+text-align: justify;
+justify-content: center;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>

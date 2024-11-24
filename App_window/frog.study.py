@@ -20,7 +20,7 @@ text_size = 17
 dict_of_sclass = {
     'Математика': 'math_progression',
     'Физика': 'phys_progression',
-    'Биология': 'math_progression',
+    'Биология': 'bio_progression',
     'Химия': 'chem_progression',
 }
 
@@ -310,6 +310,7 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
         for i, value in enumerate(table):
             worksheet.write(1, i + 4, value)
         workbook.close()
+        self.success_label_exel.setText('Успешно!')
 
     def update_password(self):
         self.error_label.setText('')
