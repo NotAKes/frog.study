@@ -302,6 +302,14 @@ class Ui_AccountWindow(object):
 "padding-left:4%;\n"
 "text-align:center;")
         self.download_button.setObjectName("download_button")
+        self.success_label_exel = QtWidgets.QLabel(parent=self.frame_3)
+        self.success_label_exel.setGeometry(QtCore.QRect(90, 730, 101, 31))
+        self.success_label_exel.setStyleSheet("color:rgb(145, 255, 143);\n"
+"font-size:19px;\n"
+"text-align: justify;\n"
+"justify-content: center;")
+        self.success_label_exel.setText("")
+        self.success_label_exel.setObjectName("success_label_exel")
         self.horizontalLayout.addWidget(self.frame_3)
         MainWindow.setCentralWidget(self.centralwidget)
 
