@@ -510,6 +510,7 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         con.commit()
         con.close()
 
+    # функцию я написал ПОСЛЕ защиты проекта
     def delete_article(self):
         if not self.is_admin:
             self.error_label.setText('Недостаточно прав')  # сообщаем об ошибке если поля пустые
@@ -520,6 +521,7 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         con.close()
         self.open_study_window()
 
+    # функцию я написал ПОСЛЕ защиты проекта
     def edit_article(self):
         if not self.is_admin:
             self.error_label.setText('Недостаточно прав')  # сообщаем об ошибке если поля пустые
@@ -535,7 +537,8 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         self.second_form.show()
         self.close()
 
-
+# этот класс я написал ПОСЛЕ защиты проекта
+# (возможны баги)
 class EditWindow(QWidget, Ui_Form_Edit):
     def __init__(self, title, sclass, id, paragraph_id, is_admin, text, *args):
         super().__init__()
