@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Form_Paragraph(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(902, 699)
+        Form.resize(902, 771)
         Form.setStyleSheet("QWidget{background:rgb(54, 57, 76);}\n"
 "QPushButton{color:white;\n"
 "background:transparent;\n"
@@ -55,9 +55,35 @@ class Ui_Form_Paragraph(object):
         self.paragraph = QtWidgets.QTextBrowser(parent=Form)
         self.paragraph.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.paragraph.setStyleSheet("border-top:1px solid rgb(231, 251, 255);\n"
+"border-bottom:1px solid rgb(231, 251, 255);\n"
 "color:white;")
         self.paragraph.setObjectName("paragraph")
         self.verticalLayout.addWidget(self.paragraph)
+        self.footer = QtWidgets.QFrame(parent=Form)
+        self.footer.setMinimumSize(QtCore.QSize(0, 60))
+        self.footer.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.footer.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.footer.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.footer.setObjectName("footer")
+        self.delete_btn = QtWidgets.QPushButton(parent=self.footer)
+        self.delete_btn.setGeometry(QtCore.QRect(10, 10, 40, 41))
+        self.delete_btn.setMaximumSize(QtCore.QSize(40, 16777215))
+        self.delete_btn.setText("")
+        self.delete_btn.setObjectName("delete_btn")
+        self.edit_btn = QtWidgets.QPushButton(parent=self.footer)
+        self.edit_btn.setGeometry(QtCore.QRect(70, 10, 40, 41))
+        self.edit_btn.setMaximumSize(QtCore.QSize(40, 16777215))
+        self.edit_btn.setText("")
+        self.edit_btn.setObjectName("edit_btn")
+        self.error_label = QtWidgets.QLabel(parent=self.footer)
+        self.error_label.setGeometry(QtCore.QRect(150, 10, 181, 31))
+        self.error_label.setStyleSheet("color:orange;\n"
+"font-size:17px;\n"
+"text-align: justify;\n"
+"justify-content: center;")
+        self.error_label.setText("")
+        self.error_label.setObjectName("error_label")
+        self.verticalLayout.addWidget(self.footer)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

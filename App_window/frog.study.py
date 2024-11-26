@@ -10,6 +10,7 @@ from settings_pageUI import Ui_Form_Settings
 from main_pageUI import Ui_MainWindow
 from account_pageUI import Ui_AccountWindow
 from study_pageUI import Ui_Form_Study
+from edit_pageUI import Ui_Form_Edit
 from paragraph_pageUI import Ui_Form_Paragraph
 from login_pageUI import Ui_LoginWindow
 from reg_pageUI import Ui_RegWindow
@@ -163,7 +164,7 @@ class Mainwindow(QMainWindow, Ui_MainWindow):
     # Функции открытия других окон
     def open_study_window(self):
         # откртие окна со статьями
-        self.second_form = StudyWindow(self.sender().text(), self.id)
+        self.second_form = StudyWindow(self.sender().text(), self.id, self.is_admin)
         self.second_form.show()
 
     def open_service_window(self):
@@ -385,9 +386,10 @@ class AccountWindow(QMainWindow, Ui_AccountWindow):
 
 
 class StudyWindow(QWidget, Ui_Form_Study):
-    def __init__(self, sclass, id, *args):
+    def __init__(self, sclass, id, is_admin, *args):
         super().__init__()
         self.id = id
+        self.is_admin = is_admin
         self.sclass = sclass
         self.setupUi(self)  # описание окна, введение информации о пользователе
         self.get_paragraphs_title()
@@ -424,21 +426,26 @@ class StudyWindow(QWidget, Ui_Form_Study):
 
     def open_paragraph_window(self):
         # откртие окна со статьей
-        self.second_form = ParagraphWindow(self.sender().text(), self.sclass, self.id)
+        self.second_form = ParagraphWindow(self.sender().text(), self.sclass, self.id, self.is_admin)
         self.second_form.show()
         self.close()
 
 
 class ParagraphWindow(QWidget, Ui_Form_Paragraph):
-    def __init__(self, title, sclass, id, *args):
+    def __init__(self, title, sclass, id, is_admin, *args):
         super().__init__()
         self.id = id
         self.title_text = title
         self.sclass = sclass
+        self.is_admin = is_admin
         self.setupUi(self)  # описание окна, введение информации о пользователе
         self.update_progress()
         self.goback.clicked.connect(self.open_study_window)
         self.goback.setIcon(QIcon('arrow_back.png'))
+        self.edit_btn.setIcon(QIcon('edit_article.png'))
+        self.edit_btn.clicked.connect(self.edit_article)
+        self.delete_btn.setIcon(QIcon('delete_article.png'))
+        self.delete_btn.clicked.connect(self.delete_article)
         self.setWindowTitle('One-frog.Study')
         self.setWindowIcon(QIcon('logo_favicon.png'))
         self.title.setText(self.title_text)
@@ -503,9 +510,92 @@ class ParagraphWindow(QWidget, Ui_Form_Paragraph):
         con.commit()
         con.close()
 
+    def delete_article(self):
+        if not self.is_admin:
+            self.error_label.setText('Недостаточно прав')  # сообщаем об ошибке если поля пустые
+            return
+        con = sqlite3.connect('db_name.sqlite')
+        con.execute(f"""Delete from articles where id = '{self.paragraph_id}'""")
+        con.commit()
+        con.close()
+        self.open_study_window()
+
+    def edit_article(self):
+        if not self.is_admin:
+            self.error_label.setText('Недостаточно прав')  # сообщаем об ошибке если поля пустые
+            return
+        self.second_form = EditWindow(self.title_text, self.sclass, self.id, self.paragraph_id, self.is_admin,
+                                      self.paragraph_info[0])
+        self.second_form.show()
+        self.close()
+
     def open_study_window(self):
         # возращение к странице со статьями
-        self.second_form = StudyWindow(self.sclass, self.id)
+        self.second_form = StudyWindow(self.sclass, self.id, self.is_admin)
+        self.second_form.show()
+        self.close()
+
+
+class EditWindow(QWidget, Ui_Form_Edit):
+    def __init__(self, title, sclass, id, paragraph_id, is_admin, text, *args):
+        super().__init__()
+        self.id = id
+        self.paragraph_id = paragraph_id
+        self.title_text = title
+        self.sclass = sclass
+        self.is_admin = is_admin
+        self.setupUi(self)  # описание окна, введение информации о пользователе
+        self.senders_text.setText(text)
+        self.title_edit.setText(self.title_text)
+        self.send_button.clicked.connect(self.load_article)
+        self.confirm_send.clicked.connect(self.send_article)
+
+        self.setWindowTitle('One-frog.Study')
+        self.setWindowIcon(QIcon('logo_favicon.png'))
+        self.goback.clicked.connect(self.open_study_window)
+        self.goback.setIcon(QIcon('arrow_back.png'))
+
+    def send_article(self):
+        self.error_label.setText('')
+        self.success_label.setText('')
+        # ошибка, если поля пустые
+        if not self.title_edit.text() or not self.senders_text.toPlainText():
+            self.error_label.setText('Заполните все поля\nдля загрузки')
+            return
+        con = sqlite3.connect('db_name.sqlite')
+        # Запись кастомной статьи в Бд
+        con.cursor().execute(f"""UPDATE articles
+                                 SET paragraph_text = '{self.senders_text.toPlainText()}', 
+                                 title = '{self.title_edit.text()}'
+                                 WHERE id = {self.paragraph_id}""")
+        con.commit()
+        con.close()
+        self.success_label.setText('Успешно!')
+
+    def load_article(self):
+        # подгрузка файла от пользователя
+        fname = QFileDialog.getOpenFileName(
+            self, 'Выбрать файл', '',
+            'Текстовый (*.txt)')[0]
+        # обработка ошибок
+        if fname[-4:] != '.txt':
+            self.senders_text.setText(
+                'Неподдерживаемый формат. Обрабатываются текстовые файлы(.txt) с кодировкой utf-8')
+            return
+        try:
+            with open(fname, encoding='utf-8') as file:
+                text = file.readlines()
+                self.senders_text.setText('')
+                for i in text:
+                    self.senders_text.setText(self.senders_text.toPlainText() + i)  # внесение текста статьи в поле
+        except UnicodeDecodeError:
+            self.senders_text.setText(
+                'Неподдерживаемый формат. Обрабатываются текстовые файлы(.txt) с кодировкой utf-8')
+            return
+
+    def open_study_window(self):
+        # возращение к странице со статьями
+        self.second_form = StudyWindow(self.sclass, self.id, self.is_admin)
         self.second_form.show()
         self.close()
 
