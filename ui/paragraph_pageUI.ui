@@ -198,6 +198,23 @@ justify-content: center;</string>
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="admin_warning">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>20</y>
+        <width>448</width>
+        <height>14</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:12px;
+color:rgb(153, 164, 208);</string>
+      </property>
+      <property name="text">
+       <string>*После удаления статьи необходимо зайти на страницу любой другой статьи</string>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>

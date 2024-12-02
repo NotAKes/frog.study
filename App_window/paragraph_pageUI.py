@@ -83,6 +83,11 @@ class Ui_Form_Paragraph(object):
 "justify-content: center;")
         self.error_label.setText("")
         self.error_label.setObjectName("error_label")
+        self.admin_warning = QtWidgets.QLabel(parent=self.footer)
+        self.admin_warning.setGeometry(QtCore.QRect(370, 20, 448, 14))
+        self.admin_warning.setStyleSheet("font-size:12px;\n"
+"color:rgb(153, 164, 208);")
+        self.admin_warning.setObjectName("admin_warning")
         self.verticalLayout.addWidget(self.footer)
 
         self.retranslateUi(Form)
@@ -97,3 +102,4 @@ class Ui_Form_Paragraph(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.admin_warning.setText(_translate("Form", "*После удаления статьи необходимо зайти на страницу любой другой статьи"))
